@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.github.siccity.serializablecallback": "https://github.com/Siccity/SerializableCallback.git",
     "com.thekiwicoder.behaviourtreeditor": "https://github.com/thekiwicoder0/UnityBehaviourTreeEditor.git",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.feature.2d": "2.0.0",
