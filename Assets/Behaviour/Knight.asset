@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: Knight
+  m_EditorClassIdentifier: 
+  rootNode:
+    rid: 8931511336320892929
+  nodes:
+  - rid: 8931511336320892929
+  - rid: 8931511336320892942
+  - rid: 8931511336320892943
+  - rid: 8931511336320892944
+  - rid: 8931511336320892945
+  - rid: 8931511336320892946
+  treeState: 0
+  blackboard:
+    keys:
+    - rid: 8931511337255698432
+  viewPosition: {x: 417, y: 625, z: 0}
+  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 8931511336320892929
+      type: {class: RootNode, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 6249033f-40d4-42c8-95ad-0190e18c9998
+        position: {x: -525, y: -780}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 8931511336320892942
+    - rid: 8931511336320892942
+      type: {class: Repeat, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 156ee45ce886a3a49a85d15d1088597b
+        position: {x: -525, y: -675}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 8931511336320892943
+        restartOnSuccess: 1
+        restartOnFailure: 0
+        maxRepeats: 0
+    - rid: 8931511336320892943
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 3080b5647ba690f4aa99040be6235558
+        position: {x: -525, y: -570}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 8931511336320892944
+        - rid: 8931511336320892945
+        - rid: 8931511336320892946
+    - rid: 8931511336320892944
+      type: {class: RandomPosition, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 980e4c13d4e5cad428cc0aeb2b47bc3e
+        position: {x: -690, y: -435}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 1
+        min: {x: -10, y: -10}
+        max: {x: 10, y: 10}
+        result:
+          reference:
+            rid: 8931511337255698432
+          defaultValue: {x: 0, y: 0, z: 0}
+    - rid: 8931511336320892945
+      type: {class: MoveToPosition, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 1ae908a8ab9df964d82cb78f31871408
+        position: {x: -525, y: -435}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 1
+        speed:
+          reference:
+            rid: -2
+          defaultValue: 5
+        stoppingDistance:
+          reference:
+            rid: -2
+          defaultValue: 0.1
+        updateRotation:
+          reference:
+            rid: -2
+          defaultValue: 1
+        acceleration:
+          reference:
+            rid: -2
+          defaultValue: 40
+        tolerance:
+          reference:
+            rid: -2
+          defaultValue: 1
+        targetPosition:
+          reference:
+            rid: 8931511337255698432
+          defaultValue: {x: 0, y: 0, z: 0}
+    - rid: 8931511336320892946
+      type: {class: Wait, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 10fc940e200058040b197e2bc1e62101
+        position: {x: -360, y: -435}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        duration: 5
+    - rid: 8931511337255698432
+      type: {class: Vector3Key, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: Destination
+        typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        value: {x: 0, y: 0, z: 0}
