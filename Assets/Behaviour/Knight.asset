@@ -16,16 +16,22 @@ MonoBehaviour:
     rid: 8931511336320892929
   nodes:
   - rid: 8931511336320892929
-  - rid: 8931511336320892942
-  - rid: 8931511336320892943
   - rid: 8931511336320892944
   - rid: 8931511336320892945
-  - rid: 8931511336320892946
+  - rid: 8931511354768490501
+  - rid: 8931511354768490506
+  - rid: 8931511354768490510
+  - rid: 8931511354768490511
+  - rid: 8931511354768490523
+  - rid: 8931511354768490524
+  - rid: 8931511354768490526
+  - rid: 8931511354768490531
   treeState: 0
   blackboard:
     keys:
-    - rid: 8931511337255698432
-  viewPosition: {x: 417, y: 625, z: 0}
+    - rid: 8931511354768490515
+    - rid: 8931511354768490527
+  viewPosition: {x: 792, y: 654, z: 0}
   viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
   references:
     version: 2
@@ -38,51 +44,20 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 6249033f-40d4-42c8-95ad-0190e18c9998
-        position: {x: -525, y: -780}
+        position: {x: -525, y: -1065}
         blackboard:
           keys: []
         description: 
         drawGizmos: 0
         child:
-          rid: 8931511336320892942
-    - rid: 8931511336320892942
-      type: {class: Repeat, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        state: 0
-        started: 0
-        guid: 156ee45ce886a3a49a85d15d1088597b
-        position: {x: -525, y: -675}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        child:
-          rid: 8931511336320892943
-        restartOnSuccess: 1
-        restartOnFailure: 0
-        maxRepeats: 0
-    - rid: 8931511336320892943
-      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        state: 0
-        started: 0
-        guid: 3080b5647ba690f4aa99040be6235558
-        position: {x: -525, y: -570}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        children:
-        - rid: 8931511336320892944
-        - rid: 8931511336320892945
-        - rid: 8931511336320892946
+          rid: 8931511354768490523
     - rid: 8931511336320892944
       type: {class: RandomPosition, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         state: 0
         started: 0
         guid: 980e4c13d4e5cad428cc0aeb2b47bc3e
-        position: {x: -690, y: -435}
+        position: {x: -705, y: -405}
         blackboard:
           keys: []
         description: 
@@ -91,7 +66,7 @@ MonoBehaviour:
         max: {x: 10, y: 10}
         result:
           reference:
-            rid: 8931511337255698432
+            rid: 8931511354768490515
           defaultValue: {x: 0, y: 0, z: 0}
     - rid: 8931511336320892945
       type: {class: MoveToPosition, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
@@ -99,7 +74,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 1ae908a8ab9df964d82cb78f31871408
-        position: {x: -525, y: -435}
+        position: {x: -540, y: -405}
         blackboard:
           keys: []
         description: 
@@ -126,24 +101,163 @@ MonoBehaviour:
           defaultValue: 1
         targetPosition:
           reference:
-            rid: 8931511337255698432
+            rid: 8931511354768490515
           defaultValue: {x: 0, y: 0, z: 0}
-    - rid: 8931511336320892946
-      type: {class: Wait, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+    - rid: 8931511354768490501
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         state: 0
         started: 0
-        guid: 10fc940e200058040b197e2bc1e62101
-        position: {x: -360, y: -435}
+        guid: f682c8944b4e1af4e9a5d4439a53ff32
+        position: {x: -375, y: -675}
         blackboard:
           keys: []
         description: 
         drawGizmos: 0
-        duration: 5
-    - rid: 8931511337255698432
+        children:
+        - rid: 8931511354768490511
+    - rid: 8931511354768490506
+      type: {class: RangeDetection, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 2a6b4b3fe5c90354791f25cf0c8c6d9b
+        position: {x: -870, y: -405}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        playerPos: {fileID: 0}
+        m_playerPos:
+          reference:
+            rid: -2
+          defaultValue: {x: 0, y: 0}
+    - rid: 8931511354768490510
+      type: {class: Selector, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: a36fa6d17f275ad45ab64cb71d436e2f
+        position: {x: -525, y: -825}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 8931511354768490526
+        - rid: 8931511354768490501
+    - rid: 8931511354768490511
+      type: {class: MoveToPosition, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 184d24af592a67245ad0e22dfc6ff051
+        position: {x: -375, y: -570}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        speed:
+          reference:
+            rid: -2
+          defaultValue: 5
+        stoppingDistance:
+          reference:
+            rid: -2
+          defaultValue: 0.1
+        updateRotation:
+          reference:
+            rid: -2
+          defaultValue: 1
+        acceleration:
+          reference:
+            rid: -2
+          defaultValue: 40
+        tolerance:
+          reference:
+            rid: -2
+          defaultValue: 1
+        targetPosition:
+          reference:
+            rid: 8931511354768490515
+          defaultValue: {x: 0, y: 0, z: 0}
+    - rid: 8931511354768490515
       type: {class: Vector3Key, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         name: Destination
         typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
         value: {x: 0, y: 0, z: 0}
+    - rid: 8931511354768490523
+      type: {class: Repeat, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: c68ace22cce64764eb7d25a925e9063e
+        position: {x: -525, y: -945}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 8931511354768490510
+        restartOnSuccess: 1
+        restartOnFailure: 1
+        maxRepeats: 0
+    - rid: 8931511354768490524
+      type: {class: CompareProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 4ba1c658df6e8524b87908dacfe0f72a
+        position: {x: -885, y: -540}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 8931511354768490527
+          value:
+            rid: 8931511354768490528
+    - rid: 8931511354768490526
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 4a5cedcdac1acbf4e9bb6bd39907c099
+        position: {x: -705, y: -675}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 8931511354768490524
+        - rid: 8931511354768490531
+    - rid: 8931511354768490527
+      type: {class: BooleanKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: Chillax
+        typeName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 1
+    - rid: 8931511354768490528
+      type: {class: BooleanKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 1
+    - rid: 8931511354768490531
+      type: {class: Parallel, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 7013e976c5e487a42a7b0c52680a68cb
+        position: {x: -705, y: -540}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 8931511354768490506
+        - rid: 8931511336320892944
+        - rid: 8931511336320892945
