@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Knight's Odyssey/State Machine")]
 public class StateMachine : ScriptableObject
 {
-    [SerializeField]
+    [SerializeReference]
     private List<State> states;
 
-    [SerializeField]
+    [SerializeReference]
     private State _defaultState = null;
 
     private State _current = null;
@@ -38,6 +39,11 @@ public class StateMachine : ScriptableObject
         }
     }
 
+
+    public void SetDefaultState(State state)
+    {
+        _defaultState = state;
+    }
 
     public void AddState(State state)
     {

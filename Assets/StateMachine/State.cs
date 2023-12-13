@@ -12,24 +12,21 @@ public abstract class State
     {
         [SerializeReference]
         public State stateBefore;
+
+		[SerializeReference]
 		public State stateAfter;
 
 		public abstract bool Pass();
     }
 
 
-    [SerializeField]
-    private string _name;
-
-	public string Name => _name;
-
 	[SerializeField]
     private List<Transition> _transitions;
 
 
-    public State(string name)
+    public State()
     {
-        _name = name;
+        
     }
 
     public void AddTransition(Transition transition)
