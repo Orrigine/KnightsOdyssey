@@ -4,7 +4,7 @@ using UnityEngine;
 using TheKiwiCoder;
 
 [System.Serializable]
-public class ShortRangeAttack : ActionNode
+public class CoolDown : ActionNode
 {
     protected override void OnStart() {
     }
@@ -13,11 +13,14 @@ public class ShortRangeAttack : ActionNode
     }
 
     protected override State OnUpdate() {
-        if(blackboard.GetValue<float>("Cooldown") <= 0)
+        if(blackboard.GetValue<float>("Cooldown") > 0)
+        {
+            blackboard.SetValue<float>("Cooldown", blackboard.GetValue<float>("Cooldown") - Time.deltaTime * 2);
+            return State.Success;
+        }
+        else if(blackboard.GetValue<float>("Cooldown") <= 0)
         {
             blackboard.SetValue<float>("Cooldown", 1.5f);
-            context.gameObject.GetComponent<PlayerAttack>().Attack(context.gameObject.GetComponent<Transform>().position, context.gameObject.GetComponent<Transform>().rotation);
-            Debug.Log("Attack");
             return State.Success;
         }
         return State.Success;
