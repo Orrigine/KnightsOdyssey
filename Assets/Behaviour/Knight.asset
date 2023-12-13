@@ -32,14 +32,21 @@ MonoBehaviour:
   - rid: 8931511382317203460
   - rid: 8931511382317203463
   - rid: 8931511382317203467
+  - rid: 8931511382317203470
+  - rid: 8931511382317203471
+  - rid: 8931511382317203473
+  - rid: 8931511382317203474
+  - rid: 8931511382317203475
+  - rid: 8931511382317203476
+  - rid: 8931511382317203477
   treeState: 0
   blackboard:
     keys:
     - rid: 8931511354768490515
     - rid: 8931511354768490527
     - rid: 8931511382317203465
-  viewPosition: {x: 537, y: 676, z: 0}
-  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
+  viewPosition: {x: 341, y: 518, z: 0}
+  viewScale: {x: 0.375937, y: 0.375937, z: 1}
   references:
     version: 2
     RefIds:
@@ -139,14 +146,14 @@ MonoBehaviour:
         drawGizmos: 0
         children:
         - rid: 8931511354768490526
-        - rid: 8931511382317203460
+        - rid: 8931511382317203473
     - rid: 8931511354768490511
       type: {class: MoveToPosition, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         state: 0
         started: 0
         guid: 184d24af592a67245ad0e22dfc6ff051
-        position: {x: -375, y: -555}
+        position: {x: -345, y: -420}
         blackboard:
           keys: []
         description: 
@@ -301,7 +308,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 7a8ef85fa2ccaca41b00fd01c2e31ff6
-        position: {x: -210, y: -555}
+        position: {x: -180, y: -420}
         blackboard:
           keys: []
         description: 
@@ -312,7 +319,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: e49ed99a5e70d4549847c8c84c89ec6c
-        position: {x: -345, y: -690}
+        position: {x: -270, y: -555}
         blackboard:
           keys: []
         description: 
@@ -327,7 +334,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: bfd467c73c87ab44b8962e02755d1e74
-        position: {x: -30, y: -435}
+        position: {x: 0, y: -300}
         blackboard:
           keys: []
         description: 
@@ -344,10 +351,124 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 52b71c13f3337b546b8d75feb455bc5b
-        position: {x: -30, y: -555}
+        position: {x: 0, y: -420}
         blackboard:
           keys: []
         description: 
         drawGizmos: 0
         children:
         - rid: 8931511382317203463
+    - rid: 8931511382317203470
+      type: {class: RandomFailure, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 0ca6f128dd0f4b84fa6b97606abf8c22
+        position: {x: 165, y: -420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        chanceOfFailure: 0.99
+    - rid: 8931511382317203471
+      type: {class: MoveToPosition, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 6f9335a99e1b4414b9f94a9e8cd246ec
+        position: {x: 825, y: -420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        speed:
+          reference:
+            rid: -2
+          defaultValue: 5
+        stoppingDistance:
+          reference:
+            rid: -2
+          defaultValue: 0.1
+        updateRotation:
+          reference:
+            rid: -2
+          defaultValue: 1
+        acceleration:
+          reference:
+            rid: -2
+          defaultValue: 40
+        tolerance:
+          reference:
+            rid: -2
+          defaultValue: 1
+        targetPosition:
+          reference:
+            rid: -2
+          defaultValue: {x: 2, y: 2, z: 0}
+    - rid: 8931511382317203473
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 7aafc4c45d6ed474198f73469132b1e2
+        position: {x: -15, y: -690}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 8931511382317203460
+        - rid: 8931511382317203474
+    - rid: 8931511382317203474
+      type: {class: Selector, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 05a29aba453aaca40aaa9f9662ac5220
+        position: {x: 165, y: -555}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 8931511382317203470
+        - rid: 8931511382317203475
+        - rid: 8931511382317203476
+        - rid: 8931511382317203477
+        - rid: 8931511382317203471
+    - rid: 8931511382317203475
+      type: {class: RandomFailure, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: a8f59c4121b325a4eac762be59d008cf
+        position: {x: 330, y: -420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        chanceOfFailure: 0.5
+    - rid: 8931511382317203476
+      type: {class: RandomFailure, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: b30893091b175134fb148c85c34ab12d
+        position: {x: 495, y: -420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        chanceOfFailure: 0.5
+    - rid: 8931511382317203477
+      type: {class: RandomFailure, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 8f61f8def18c2e64fa1b1a774a026e8f
+        position: {x: 660, y: -420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        chanceOfFailure: 0.5
