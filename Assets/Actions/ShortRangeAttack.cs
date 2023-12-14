@@ -15,7 +15,7 @@ public class ShortRangeAttack : ActionNode
     protected override State OnUpdate() {
         if(blackboard.GetValue<float>("Cooldown") <= 0)
         {
-            blackboard.SetValue<float>("Cooldown", 1.5f);
+            blackboard.SetValue<float>("Cooldown", blackboard.GetValue<float>("CoolDownValue"));
             context.gameObject.GetComponent<PlayerAttack>().Attack(context.gameObject.GetComponent<Transform>().position, context.gameObject.GetComponent<Transform>().rotation);
             Debug.Log("Attack");
             return State.Success;

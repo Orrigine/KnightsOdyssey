@@ -502,7 +502,6 @@ GameObject:
   - component: {fileID: 1226405632}
   - component: {fileID: 1226405634}
   - component: {fileID: 1226405633}
-  - component: {fileID: 1226405635}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -589,7 +588,7 @@ Transform:
   m_GameObject: {fileID: 1226405625}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.34, y: -0.81, z: 0}
+  m_LocalPosition: {x: -2.84, y: -1.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -670,18 +669,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1226405635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1226405625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8550f034611a06e4f88fc261204d8a7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1235164109
 GameObject:
   m_ObjectHideFlags: 0
