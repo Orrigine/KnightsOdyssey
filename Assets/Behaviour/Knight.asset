@@ -49,7 +49,7 @@ MonoBehaviour:
     - rid: 8931511354768490515
     - rid: 8931511354768490527
     - rid: 8931511382317203465
-  viewPosition: {x: -107, y: 417, z: 0}
+  viewPosition: {x: -63, y: 429, z: 0}
   viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
   references:
     version: 2
@@ -488,7 +488,7 @@ MonoBehaviour:
           keys: []
         description: 
         drawGizmos: 0
-        duration: 0.7
+        duration: 3
     - rid: 8931511401659236353
       type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
