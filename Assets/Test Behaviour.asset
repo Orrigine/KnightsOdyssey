@@ -16,16 +16,54 @@ MonoBehaviour:
     rid: 4658662911998689280
   nodes:
   - rid: 4658662911998689280
+  - rid: 2630055210235199492
+  - rid: 2630055210235199495
+  - rid: 2630055210235199496
   treeState: 0
   blackboard:
     keys: []
-  viewPosition: {x: 600, y: 300, z: 0}
-  viewScale: {x: 1, y: 1, z: 1}
+  viewPosition: {x: 164, y: 32, z: 0}
+  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 2630055210235199492
+      type: {class: Selector, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 74b606455e6bbe644abf2af3bf980a0c
+        position: {x: -30, y: 180}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 2630055210235199495
+        - rid: 2630055210235199496
+    - rid: 2630055210235199495
+      type: {class: Breakpoint, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 9f62a1a61ecde5d40830d59807399c95
+        position: {x: -150, y: 330}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+    - rid: 2630055210235199496
+      type: {class: Wait, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: da4ef0d58cf093b428db13e5edb2a6d2
+        position: {x: 0, y: 330}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        duration: 1
     - rid: 4658662911998689280
       type: {class: RootNode, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -38,4 +76,4 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         child:
-          rid: -2
+          rid: 2630055210235199492
