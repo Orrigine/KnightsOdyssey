@@ -9,12 +9,16 @@ public class BehaviorTreeInstance : MonoBehaviour
     [SerializeReference]
     private BehaviorTree _behaviorTreeAsset = null;
 
-    public BehaviorTree behaviorTree;
+    public BehaviorTree behaviorTree = null;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        behaviorTree = _behaviorTreeAsset.Clone();
+        if (_behaviorTreeAsset)
+        {
+            behaviorTree = _behaviorTreeAsset.Clone();
+        }
 	}
 
     // Update is called once per frame
