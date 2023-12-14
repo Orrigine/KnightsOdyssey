@@ -21,4 +21,14 @@ public class BehaviorTree : ScriptableObject
         rootNode = new NodeRoot();
         nodes.Add(rootNode);
     }
+
+	public void Update()
+	{
+		rootNode.Update();
+	}
+
+	public BehaviorTree Clone()
+	{
+		return Instantiate(this);
+	}
 }
