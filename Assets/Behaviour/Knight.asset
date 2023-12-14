@@ -39,14 +39,18 @@ MonoBehaviour:
   - rid: 8931511382317203475
   - rid: 8931511382317203476
   - rid: 8931511382317203477
+  - rid: 8931511401659236352
+  - rid: 8931511401659236353
+  - rid: 8931511401659236354
+  - rid: 8931511401659236355
   treeState: 0
   blackboard:
     keys:
     - rid: 8931511354768490515
     - rid: 8931511354768490527
     - rid: 8931511382317203465
-  viewPosition: {x: 341, y: 518, z: 0}
-  viewScale: {x: 0.375937, y: 0.375937, z: 1}
+  viewPosition: {x: -107, y: 417, z: 0}
+  viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
   references:
     version: 2
     RefIds:
@@ -376,7 +380,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 6f9335a99e1b4414b9f94a9e8cd246ec
-        position: {x: 825, y: -420}
+        position: {x: 1005, y: -285}
         blackboard:
           keys: []
         description: 
@@ -403,7 +407,7 @@ MonoBehaviour:
           defaultValue: 1
         targetPosition:
           reference:
-            rid: -2
+            rid: 8931511354768490515
           defaultValue: {x: 2, y: 2, z: 0}
     - rid: 8931511382317203473
       type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
@@ -435,7 +439,8 @@ MonoBehaviour:
         - rid: 8931511382317203475
         - rid: 8931511382317203476
         - rid: 8931511382317203477
-        - rid: 8931511382317203471
+        - rid: 8931511401659236354
+        - rid: 8931511401659236353
     - rid: 8931511382317203475
       type: {class: RandomFailure, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -472,3 +477,59 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         chanceOfFailure: 0.5
+    - rid: 8931511401659236352
+      type: {class: Wait, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 05620ef2ee0eef8468aff0937185e29b
+        position: {x: 1170, y: -285}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        duration: 0.7
+    - rid: 8931511401659236353
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 983a7621c666f344a8c62bbbd2ad1d4e
+        position: {x: 1005, y: -420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 8931511401659236355
+        - rid: 8931511382317203471
+        - rid: 8931511401659236352
+    - rid: 8931511401659236354
+      type: {class: RandomFailure, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: c618e3831bdd4dc4b99b0d2b8275686d
+        position: {x: 825, y: -420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        chanceOfFailure: 0.5
+    - rid: 8931511401659236355
+      type: {class: RandomPosition, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 3f85397d025ca334d864337958a589d5
+        position: {x: 840, y: -285}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        min: {x: -2, y: 2}
+        max: {x: -2, y: 2}
+        result:
+          reference:
+            rid: 8931511354768490515
+          defaultValue: {x: 0, y: 0, z: 0}
