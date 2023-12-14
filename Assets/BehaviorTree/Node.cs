@@ -17,9 +17,25 @@ public abstract class Node
     [HideInInspector]
     protected List<Node> children = new List<Node>();
 
+    private bool _started = false;
+
     public State Update()
     {
-        return OnUpdate();
+        if (!_started)
+        {
+            _started = true;
+            OnStart();
+        }
+
+        State s = OnUpdate();
+
+        if (s != State.Running)
+        {
+			OnStop();
+			_started = false;
+        }
+
+        return s;
     }
 
     protected abstract void OnStart();
