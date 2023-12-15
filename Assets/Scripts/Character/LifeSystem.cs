@@ -5,22 +5,18 @@ using UnityEngine;
 
 public class LifeSystem : MonoBehaviour
 {
-    float maxLife = 100;
-    [SerializeField] private float _currentLife = 100;
-    [SerializeField] private float _lifeRegen = 0;
-    [SerializeField] private float _lifeRegenDelay = 0;
-    [SerializeField] private float _lifeRegenDelayTimer = 0;
+    private int maxLife = 3;
+    [SerializeField] private int _currentLife = 3;
     [SerializeField] private bool _isDead = false;
     [SerializeField] private bool _isInvincible = false;
-    [SerializeField] private bool _isRegenerating = false;
     
-    public float CurrentLife
+    public int CurrentLife
     {
         get => _currentLife;
         set => _currentLife = value;
     }
     
-    public float MaxLife
+    public int MaxLife
     {
         get => maxLife;
         set => maxLife = value;
@@ -30,11 +26,6 @@ public class LifeSystem : MonoBehaviour
     {
         get => _isDead;
         set => _isDead = value;
-    }
-
-    private void Awake()
-    {
-        throw new NotImplementedException();
     }
 
     void Start()
@@ -48,44 +39,20 @@ public class LifeSystem : MonoBehaviour
             IsDead = true;
         else
             IsDead = false;
-
-        if (_isRegenerating)
-        {
-            RegenerateLife();
-        }
     }
     
-    private void RegenerateLife()
-    {
-        if (_lifeRegenDelayTimer > 0)
-            _lifeRegenDelayTimer -= Time.deltaTime;
-        else
-            _lifeRegenDelayTimer = 0;
-        
-        if (_lifeRegenDelayTimer == 0)
-        {
-            if (CurrentLife < MaxLife)
-            {
-                CurrentLife += _lifeRegen * Time.deltaTime;
-                if (CurrentLife > MaxLife)
-                    CurrentLife = MaxLife;
-            }
-        }
-    }
-    
-    public void Heal(float amount)
+    public void Heal(int amount)
     {
         CurrentLife += amount;
         if (CurrentLife > MaxLife)
             CurrentLife = MaxLife;
     }
     
-    public void TakeDamage(float amount)
+    public void TakeDamage(int amount)
     {
         if (!_isInvincible)
         {
             CurrentLife -= amount;
-            _lifeRegenDelayTimer = _lifeRegenDelay;
         }
     }
 
@@ -93,8 +60,8 @@ public class LifeSystem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Hitbox"))
         {
-            float damage = other.gameObject.GetComponent<HitBox>().Damage;
-            TakeDamage(damage);
+            uint damage = other.gameObject.GetComponent<HitBox>().Damage;
+            TakeDamage((int)damage);
         }
     }
 }

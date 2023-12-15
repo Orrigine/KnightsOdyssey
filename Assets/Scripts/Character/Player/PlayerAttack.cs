@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -14,5 +15,15 @@ public class PlayerAttack : MonoBehaviour
         _attackHitboxInstance.GetComponent<Transform>().parent = gameObject.GetComponent<Transform>();
         _attackHitboxInstance.GetComponent<Transform>().position = position;
         _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
+    }
+
+    public void Update()
+    {
+        if (GetComponent<NavMeshAgent>() != null)
+        {
+            GetComponent<NavMeshAgent>().updateRotation = false;
+            GetComponent<NavMeshAgent>().updateUpAxis = false;  
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 }
