@@ -19,6 +19,11 @@ public class PlayerAttack : MonoBehaviour
 
     public void Update()
     {
-        GetComponent<NavMeshAgent>().updateRotation = false;
+        if (GetComponent<NavMeshAgent>() != null)
+        {
+            GetComponent<NavMeshAgent>().updateRotation = false;
+            GetComponent<NavMeshAgent>().updateUpAxis = false;  
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 }

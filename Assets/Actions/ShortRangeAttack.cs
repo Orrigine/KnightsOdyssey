@@ -17,7 +17,6 @@ public class ShortRangeAttack : ActionNode
         {
             blackboard.SetValue<float>("Cooldown", blackboard.GetValue<float>("CoolDownValue"));
             context.gameObject.GetComponent<PlayerAttack>().Attack(context.gameObject.GetComponent<Transform>().position, context.gameObject.GetComponent<Transform>().rotation);
-            Debug.Log("Attack");
             return State.Success;
         }
         return State.Success;
