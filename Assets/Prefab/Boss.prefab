@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 2945251859125750597}
   - component: {fileID: 9150759607148196033}
   - component: {fileID: 1482355000957789744}
+  - component: {fileID: 4308239360286201896}
   - component: {fileID: 8167053337408179438}
   m_Layer: 0
   m_Name: Boss
@@ -230,6 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackHitbox: {fileID: 642999092558500465, guid: ca6696658e2ea4342809114e6b31b7ca, type: 3}
+  _hugeAttack: {fileID: 2441528132480220528, guid: 69658eb8833ac6e4c8f8c93cd717d3af, type: 3}
 --- !u!195 &1482355000957789744
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -252,6 +254,22 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4308239360286201896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712258085719296241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d97254951ca834fa5122b7be534c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxLife: 3
+  _currentLife: 3
+  _isDead: 0
+  _isInvincible: 0
 --- !u!114 &8167053337408179438
 MonoBehaviour:
   m_ObjectHideFlags: 0
