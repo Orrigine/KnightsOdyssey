@@ -28,22 +28,10 @@ public class EnemyPatrol : MonoBehaviour
         // patrol on a random range between -10 and 10 without going out of bounds
         posX = Random.Range(-10, 10);
         posY = Random.Range(-10, 10);
-        if (posX > 10)
-        {
-            posX = 10;
-        }
-        else if (posX < -10)
-        {
-            posX = -10;
-        }
-        if (posY > 10)
-        {
-            posY = 10;
-        }
-        else if (posY < -10)
-        {
-            posY = -10;
-        }
+        
+        // get the rigibody
+        //Collider2D rb = GetComponent<Collider>();
+
         Vector3 destination = new Vector3(posX + transform.position.x, posY + transform.position.y, 0);
         _nav.SetDestination(destination);
 
