@@ -55,13 +55,4 @@ public class LifeSystem : MonoBehaviour
             CurrentLife -= amount;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Hitbox"))
-        {
-            uint damage = other.gameObject.GetComponent<HitBox>().Damage;
-            TakeDamage((int)damage);
-        }
-    }
 }
