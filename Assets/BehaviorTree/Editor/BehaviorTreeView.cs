@@ -12,7 +12,7 @@ public class BehaviorTreeView : GraphView
 
     public BehaviorTreeView()
     {
-
+        Insert(0, new GridBackground());
     }
 
 
