@@ -6,6 +6,9 @@ using UnityEngine;
 public class StateMachine : ScriptableObject
 {
     [SerializeReference]
+    public Blackboard blackboard;
+
+	[SerializeReference]
     private List<State> states;
 
     [SerializeReference]
@@ -16,8 +19,8 @@ public class StateMachine : ScriptableObject
 
     public StateMachine()
     {
-        
-    }
+		blackboard = new Blackboard();
+	}
 
     public void Init()
     {
@@ -53,5 +56,11 @@ public class StateMachine : ScriptableObject
     public void AddTransition(State.Transition transition)
     {
         transition.stateBefore.AddTransition(transition);
+    }
+
+
+    public StateMachine Clone()
+    {
+        return Instantiate(this);
     }
 }
