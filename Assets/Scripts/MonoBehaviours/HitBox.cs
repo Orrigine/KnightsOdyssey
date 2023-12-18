@@ -6,7 +6,7 @@ using UnityEngine;
 public class HitBox : MonoBehaviour
 {
     [SerializeField] private uint _damage = 0;
-    [SerializeField] private float _lifeTime = 0;
+    [SerializeField] public float _lifeTime = 0;
     [SerializeField] private float _size = 1;
     
     public uint Damage
@@ -28,5 +28,9 @@ public class HitBox : MonoBehaviour
         _lifeTime -= Time.deltaTime;
         if (_lifeTime <= 0)
             Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
     }
 }

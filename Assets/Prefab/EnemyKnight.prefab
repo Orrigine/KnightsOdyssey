@@ -200,6 +200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackHitbox: {fileID: 642999092558500465, guid: ca6696658e2ea4342809114e6b31b7ca, type: 3}
   _hugeAttack: {fileID: 2441528132480220528, guid: 69658eb8833ac6e4c8f8c93cd717d3af, type: 3}
+  _arrow: {fileID: 0}
+  _fire: {fileID: 0}
 --- !u!1 &6977559990732783838
 GameObject:
   m_ObjectHideFlags: 0
