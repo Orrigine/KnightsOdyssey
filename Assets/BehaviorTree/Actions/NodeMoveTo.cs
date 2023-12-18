@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class NodeMoveTo : Node
 {
+	public NodeMoveTo()
+	{
+		name = "Move To";
+	}
+
+
 	protected override void OnStart()
 	{
 	}

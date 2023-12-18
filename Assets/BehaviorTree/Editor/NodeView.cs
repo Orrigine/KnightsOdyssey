@@ -9,6 +9,8 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
 	public NodeView(Node node)
 	{
 		_node = node;
-		this.title = node.GetType().Name;
+		this.title = node.Name;
+
+		Debug.Log(node.Name);
 	}
 }

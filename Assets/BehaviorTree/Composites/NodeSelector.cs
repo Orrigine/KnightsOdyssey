@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Selector : MonoBehaviour
+public class NodeSelector : Node
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public NodeSelector()
+	{
+		name = "Selector";
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+	protected override void OnStart()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	protected override void OnStop()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	protected override State OnUpdate()
+	{
+		throw new System.NotImplementedException();
+	}
 }

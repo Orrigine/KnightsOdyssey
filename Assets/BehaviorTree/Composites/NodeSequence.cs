@@ -7,6 +7,11 @@ public class NodeSequence : Node
 	private int _current;
 
 
+	public NodeSequence()
+	{
+		name = "Sequence";
+	}
+
 	protected override void OnStart()
 	{
 		_current = 0;

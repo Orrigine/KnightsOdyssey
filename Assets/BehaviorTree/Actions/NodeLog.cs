@@ -9,6 +9,13 @@ public class NodeLog : Node
 	[SerializeField]
 	public string message;
 
+
+	public NodeLog()
+	{
+		name = "Log";
+	}
+
+
 	protected override void OnStart()
 	{
 	}

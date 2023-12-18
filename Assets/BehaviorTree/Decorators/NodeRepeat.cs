@@ -12,6 +12,12 @@ public class NodeRepeat : Node
 	int iterationCount = 0;
 
 
+	public NodeRepeat()
+	{
+		name = "Repeat";
+	}
+
+
 	protected override void OnStart()
 	{
 		iterationCount = 0;

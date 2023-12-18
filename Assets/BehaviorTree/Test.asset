@@ -12,3 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779671c40fd1f544c9ed3c9f49a55ce8, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
+  blackboard:
+    rid: 2630055319876403206
+  nodes:
+  - rid: 2630055319876403207
+  rootNode:
+    rid: 2630055319876403207
+  references:
+    version: 2
+    RefIds:
+    - rid: 2630055319876403206
+      type: {class: Blackboard, ns: , asm: Assembly-CSharp}
+      data:
+        _keys: []
+    - rid: 2630055319876403207
+      type: {class: NodeRoot, ns: , asm: Assembly-CSharp}
+      data:
+        children: []

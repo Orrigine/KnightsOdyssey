@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class NodeInverter : Node
 {
+	public NodeInverter()
+	{
+		name = "Inverter";
+	}
+
+
 	protected override void OnStart()
 	{
 		

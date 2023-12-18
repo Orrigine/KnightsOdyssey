@@ -17,7 +17,17 @@ public abstract class Node
     [HideInInspector]
     protected List<Node> children = new List<Node>();
 
+    protected string name;
+    public string Name => name;
+
     private bool _started = false;
+
+
+    public Node()
+    {
+        // Default name.
+        name = this.GetType().Name;
+    }
 
     public State Update()
     {

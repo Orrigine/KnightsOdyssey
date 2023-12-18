@@ -14,6 +14,13 @@ public class NodeCompareValue : Node
 	[SerializeReference]
 	public BlackboardKeyValueBase compareValue;
 
+
+	public NodeCompareValue()
+	{
+		name = "Compare Value";
+	}
+
+
 	protected override void OnStart()
 	{
 		

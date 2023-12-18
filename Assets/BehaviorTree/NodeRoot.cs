@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class NodeRoot : Node
 {
+	public NodeRoot()
+	{
+		name = "Root Node";
+	}
+
     protected override void OnStart()
     {
 

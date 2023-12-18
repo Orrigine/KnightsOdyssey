@@ -14,6 +14,13 @@ public class NodeSetValue : Node
 	[SerializeReference]
 	public BlackboardKeyValueBase setValue;
 
+
+	public NodeSetValue()
+	{
+		name = "Set Value";
+	}
+
+
 	protected override void OnStart()
 	{
 
