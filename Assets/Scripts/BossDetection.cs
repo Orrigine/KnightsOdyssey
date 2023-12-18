@@ -17,6 +17,7 @@ public class BossDetection : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        transform.rotation = Quaternion.identity;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
