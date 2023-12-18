@@ -28,7 +28,7 @@ public class EnemyPatrol : MonoBehaviour
         // patrol on a random range between -10 and 10 without going out of bounds
         posX = Random.Range(-10, 10);
         posY = Random.Range(-10, 10);
-        
+
         // get the rigibody
         //Collider2D rb = GetComponent<Collider>();
 
