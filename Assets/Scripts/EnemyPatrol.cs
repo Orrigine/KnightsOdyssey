@@ -7,7 +7,8 @@ public class EnemyPatrol : MonoBehaviour
 {
     private int posX;
     private int posY;
-    public bool Aggro = false;
+    public bool Detected = false;
+    private int Timer = 0;
 
     NavMeshAgent _nav;
 
@@ -15,29 +16,48 @@ public class EnemyPatrol : MonoBehaviour
     void Start()
     {
         _nav = GetComponent<NavMeshAgent>();
-        InvokeRepeating("Patrol", 0, 5);
+        if(!Detected)
+        {
+           StartCoroutine(Patrol());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Detected)
+        {
+            StopCoroutine(Patrol());
+        }
     }
 
-    public void Patrol()
+    IEnumerator Patrol()
     {
-        // patrol on a random range between -10 and 10 without going out of bounds
-        posX = Random.Range(-10, 10);
-        posY = Random.Range(-10, 10);
+        while (true)
+        {
+            posX = Random.Range(-10, 10);
+            posY = Random.Range(-10, 10);
 
-        // get the rigibody
-        //Collider2D rb = GetComponent<Collider>();
+            Vector3 destination = new Vector3(posX + transform.position.x, posY + transform.position.y, 0);
+            _nav.SetDestination(destination);
 
-        Vector3 destination = new Vector3(posX + transform.position.x, posY + transform.position.y, 0);
-        _nav.SetDestination(destination);
+            yield return new WaitForSeconds(5f);
+        }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Detected = true;
+        }
+    }
 
-
-        // out of bounds check
-
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Detected = false;
+        }
     }
 }

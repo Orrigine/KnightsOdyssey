@@ -45,6 +45,11 @@ MonoBehaviour:
   - rid: 8931511401659236360
   - rid: 8931511401659236361
   - rid: 8931511401659236362
+  - rid: 8931511426302345218
+  - rid: 8931511426302345220
+  - rid: 8931511426302345221
+  - rid: 8931511426302345226
+  - rid: 8931511426302345227
   treeState: 0
   blackboard:
     keys:
@@ -52,8 +57,10 @@ MonoBehaviour:
     - rid: 8931511382317203465
     - rid: 8931511354768490515
     - rid: 8931511401659236356
-  viewPosition: {x: 812, y: 935, z: 0}
-  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
+    - rid: 8931511426302345222
+    - rid: 8931511426302345224
+  viewPosition: {x: 891, y: 695, z: 0}
+  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
   references:
     version: 2
     RefIds:
@@ -260,7 +267,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 7013e976c5e487a42a7b0c52680a68cb
-        position: {x: -615, y: -600}
+        position: {x: -615, y: -585}
         blackboard:
           keys: []
         description: 
@@ -432,7 +439,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 05a29aba453aaca40aaa9f9662ac5220
-        position: {x: -165, y: -585}
+        position: {x: 15, y: -585}
         blackboard:
           keys: []
         description: 
@@ -541,6 +548,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         children:
+        - rid: 8931511426302345218
         - rid: 8931511401659236361
         - rid: 8931511401659236358
         - rid: 8931511401659236362
@@ -568,3 +576,89 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         duration: 0.5
+    - rid: 8931511426302345218
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: cc0cb5a9c87173a459b1ae8d29e7ac8a
+        position: {x: 15, y: -45}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 8931511426302345220
+        - rid: 8931511426302345226
+    - rid: 8931511426302345220
+      type: {class: GetHealth, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: da371fc57dfa5b944a2b83f89915b5f2
+        position: {x: -60, y: 90}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        Health: 1
+        isFullLife: 0
+    - rid: 8931511426302345221
+      type: {class: CompareProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: a962d10d687d5d1468bd48b594150dd2
+        position: {x: 0, y: 225}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 8931511426302345224
+          value:
+            rid: 8931511426302345225
+    - rid: 8931511426302345222
+      type: {class: IntKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: CurrentHealth
+        typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 0
+    - rid: 8931511426302345224
+      type: {class: BooleanKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: FullLife
+        typeName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 0
+    - rid: 8931511426302345225
+      type: {class: BooleanKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 0
+    - rid: 8931511426302345226
+      type: {class: Selector, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 0473a01d8c07e2149aa79ae416abb711
+        position: {x: 105, y: 90}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 8931511426302345221
+        - rid: 8931511426302345227
+    - rid: 8931511426302345227
+      type: {class: HugeAttack, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: c80b4adf3c3fb9a4980c8ba439cb93a3
+        position: {x: 180, y: 225}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0

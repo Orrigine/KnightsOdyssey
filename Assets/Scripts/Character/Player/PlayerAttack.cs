@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] GameObject _attackHitbox;
+    [SerializeField] GameObject _hugeAttack;
     
     private GameObject _attackHitboxInstance;
 
@@ -17,13 +18,11 @@ public class PlayerAttack : MonoBehaviour
         _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
     }
 
-    public void Update()
+    public void HugeAttack(Vector3 position, Quaternion rotation)
     {
-        if (GetComponent<NavMeshAgent>() != null)
-        {
-            GetComponent<NavMeshAgent>().updateRotation = false;
-            GetComponent<NavMeshAgent>().updateUpAxis = false;  
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+        _attackHitboxInstance = Instantiate(_hugeAttack);
+        _attackHitboxInstance.GetComponent<Transform>().parent = gameObject.GetComponent<Transform>();
+        _attackHitboxInstance.GetComponent<Transform>().position = position;
+        _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7601081740765999341}
   - component: {fileID: 8834307161587075259}
   - component: {fileID: 2403931182667739570}
-  - component: {fileID: 4311095360486294066}
+  - component: {fileID: 2924291978641797819}
   m_Layer: 0
   m_Name: EnemyKnight
   m_TagString: Untagged
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d0f0c76180c7742923e17d1c605c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Aggro: 0
+  Detected: 0
 --- !u!114 &2403931182667739570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e39f6090724e4a4a8aadeb042afa2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4311095360486294066
+--- !u!114 &2924291978641797819
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,9 +195,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6007878971643749558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8550f034611a06e4f88fc261204d8a7b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f28ed30cc2ea7b40a04dc18b58bfa9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackHitbox: {fileID: 642999092558500465, guid: ca6696658e2ea4342809114e6b31b7ca, type: 3}
+  _hugeAttack: {fileID: 2441528132480220528, guid: 69658eb8833ac6e4c8f8c93cd717d3af, type: 3}
 --- !u!1 &6977559990732783838
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +210,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6766501624580716476}
   - component: {fileID: 4831694658877703678}
-  - component: {fileID: 4252756352447353557}
   m_Layer: 0
   m_Name: Detection
   m_TagString: Untagged
@@ -266,17 +267,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5.5
---- !u!114 &4252756352447353557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6977559990732783838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ad7068e43fe6ab4a9296aefce03f1a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  behaviourTreeInstance: {fileID: 0}
-  playerPos: {fileID: 0}
