@@ -20,9 +20,13 @@ public class PlayerBodyHitbox : MonoBehaviour
         if (other.CompareTag("HitboxEnemy"))
         {
             if (_brain.IsBlocking)
+            {
                 StartCoroutine(PushBack(other.gameObject.transform.parent.gameObject));
+            }
             else
-                _lifeSystem.TakeDamage(1);
+            {
+                _lifeSystem.TakeDamage();
+            }
         }
     }
     

@@ -10,6 +10,10 @@ public class LifeSystem : MonoBehaviour
     [SerializeField] private bool _isDead = false;
     [SerializeField] private bool _isInvincible = false;
     
+    public event Action OnHeal;
+    public event Action OnTakeDamage;
+    public event Action OnDeath;
+    
     public int CurrentLife
     {
         get => _currentLife;
@@ -37,28 +41,33 @@ public class LifeSystem : MonoBehaviour
     void Start()
     {
         CurrentLife = MaxLife;
+        OnHeal += () => { Debug.Log("Heal"); };
+        OnTakeDamage += () => { Debug.Log("TakeDamage"); };
+        OnTakeDamage += TakeDamage;
+        OnDeath += () => { Debug.Log("Death"); };
     }
 
     private void Update()
     {
         if (CurrentLife <= 0)
+        {
+            OnDeath?.Invoke();
             IsDead = true;
-        else
-            IsDead = false;
+        }
     }
     
-    public void Heal(int amount)
+    private void Heal(int amount)
     {
         CurrentLife += amount;
         if (CurrentLife > MaxLife)
             CurrentLife = MaxLife;
     }
     
-    public void TakeDamage(int amount)
+    public void TakeDamage()
     {
         if (!_isInvincible)
         {
-            CurrentLife -= amount;
+            CurrentLife--;
         }
     }
     
