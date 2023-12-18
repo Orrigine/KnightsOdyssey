@@ -16,6 +16,7 @@ MonoBehaviour:
     rid: 2630055319876403206
   nodes:
   - rid: 2630055319876403207
+  - rid: 2630055319876403210
   rootNode:
     rid: 2630055319876403207
   references:
@@ -29,3 +30,9 @@ MonoBehaviour:
       type: {class: NodeRoot, ns: , asm: Assembly-CSharp}
       data:
         children: []
+        position: {x: 20, y: 0}
+    - rid: 2630055319876403210
+      type: {class: NodeMoveTo, ns: , asm: Assembly-CSharp}
+      data:
+        children: []
+        position: {x: 186, y: 201}

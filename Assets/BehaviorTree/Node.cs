@@ -17,6 +17,9 @@ public abstract class Node
     [HideInInspector]
     protected List<Node> children = new List<Node>();
 
+    [SerializeReference]
+    public Vector2 position;
+
     protected string name;
     public string Name => name;
 

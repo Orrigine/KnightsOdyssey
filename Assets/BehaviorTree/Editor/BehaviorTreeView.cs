@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TheKiwiCoder;
 using Unity.VisualScripting;
-using Unity.VisualScripting.YamlDotNet.Serialization;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,17 +10,35 @@ public class BehaviorTreeView : GraphView
     public new class UxmlFactory : UxmlFactory<BehaviorTreeView, GraphView.UxmlTraits> {
     }
 
+	public static int gridSnapSize = 16;
 
-    public BehaviorTreeView()
+	private BehaviorTree _tree;
+
+
+	public BehaviorTreeView()
     {
         Insert(0, new GridBackground());
     }
 
 
-    public void PopulateView(BehaviorTree tree)
+	public void OpenTree(BehaviorTree tree)
+	{
+		ClearView();
+		_tree = tree;
+		PopulateView();
+	}
+
+	private void ClearView()
+	{
+		DeleteElements(graphElements.ToList());
+	}
+
+	private void PopulateView()
     {
+		ClearView();
+
         // Create nodes.
-        foreach (Node n in tree.nodes)
+        foreach (Node n in _tree.nodes)
         {
             NodeView nodeView = new NodeView(n);
             AddElement(nodeView);
@@ -36,6 +52,10 @@ public class BehaviorTreeView : GraphView
 	{
 		// Update model
 		Node node = (Node) type.Instantiate();
+		node.position = position;
+
+		_tree.AddNode(node);
+
 		if (parentView != null)
 		{
 			//serializer.AddChild(parentView.node, node);
@@ -55,6 +75,7 @@ public class BehaviorTreeView : GraphView
 	{
 		// Update Model
 		Node node = (Node) type.Instantiate();
+		node.position = position;
 
 		// Delete the childs previous parent
 		/*foreach (var connection in childView.input.connections)

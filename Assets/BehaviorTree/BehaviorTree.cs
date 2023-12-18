@@ -31,4 +31,9 @@ public class BehaviorTree : ScriptableObject
 	{
 		return Instantiate(this);
 	}
+
+	public void AddNode(Node node)
+	{
+		nodes.Add(node);
+	}
 }

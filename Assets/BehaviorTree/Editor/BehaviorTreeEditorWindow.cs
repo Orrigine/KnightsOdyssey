@@ -56,6 +56,6 @@ public class BehaviorTreeEditorWindow : EditorWindow
 
 	private void OpenTree(BehaviorTree tree)
 	{
-		behaviorTreeView?.PopulateView(tree);
+		behaviorTreeView.OpenTree(tree);
 	}
 }
