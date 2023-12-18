@@ -5,24 +5,25 @@ using UnityEngine.Animations;
 
 public class OnPatrol : StateMachineBehaviour
 {
+
+    EnemyPatrol patrol;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        patrol = animator.GetComponent<EnemyPatrol>();   
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(animator.GetComponent<EnemyPatrol>().Aggro)
+        if(patrol.Detected)
         {
             animator.SetBool("OnChase", true);
-            animator.GetComponent<EnemyPatrol>().enabled = false;
         }
         else
         {
             animator.SetBool("OnChase", false);
-            animator.GetComponent<EnemyPatrol>().enabled = true;
         }
     }
 

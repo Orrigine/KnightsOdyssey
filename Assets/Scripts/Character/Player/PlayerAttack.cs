@@ -25,14 +25,4 @@ public class PlayerAttack : MonoBehaviour
         _attackHitboxInstance.GetComponent<Transform>().position = position;
         _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
     }
-
-    public void Update()
-    {
-        if (GetComponent<NavMeshAgent>() != null)
-        {
-            GetComponent<NavMeshAgent>().updateRotation = false;
-            GetComponent<NavMeshAgent>().updateUpAxis = false;  
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-    }
 }
