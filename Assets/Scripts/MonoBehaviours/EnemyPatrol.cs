@@ -36,8 +36,6 @@ public class EnemyPatrol : MonoBehaviour
             posX = Random.Range(-10, 10);
             posY = Random.Range(-10, 10);
 
-            Debug.Log("Patrolling");
-
             Vector3 destination = new Vector3(posX + transform.position.x, posY + transform.position.y, 0);
             _nav.SetDestination(destination);
 

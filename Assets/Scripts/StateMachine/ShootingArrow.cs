@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,22 +10,21 @@ public class ShootingArrow : StateMachineBehaviour
     private float _timer = 0f;
     [SerializeField] private float _cooldown = 0.5f;
     EnemyPatrol enemyPatrol;
-    NavMeshAgent agent;
+    GameObject _player;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         playerAttack = animator.GetComponent<PlayerAttack>();
         enemyPatrol = animator.GetComponent<EnemyPatrol>();
-        agent = animator.GetComponent<NavMeshAgent>();
-        agent.isStopped = true;
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //TODO: Fix this
-        agent.SetDestination(playerAttack.transform.position);
+        Vector2 direction = _player.transform.position - animator.transform.position;
+        animator.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
         if (_timer < _cooldown)
         {
             _timer += Time.deltaTime;
