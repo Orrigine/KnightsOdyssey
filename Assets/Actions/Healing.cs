@@ -10,6 +10,7 @@ public class Healing : ActionNode
     public float startTime;
     protected override void OnStart() {
         context.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+
         startTime = Time.time;
     }
 
