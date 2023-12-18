@@ -9960,8 +9960,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad7068e43fe6ab4a9296aefce03f1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourTreeInstance: {fileID: 0}
-  playerPos: {fileID: 0}
 --- !u!58 &1494468397
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10259,7 +10257,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000010755293042, guid: 978fa2fb617654f5eaeff9da6fc7d116, type: 3}
       propertyPath: m_Name
-      value: EnemyKnight
+      value: EnemyKnight v2
       objectReference: {fileID: 0}
     - target: {fileID: 4000010376655498, guid: 978fa2fb617654f5eaeff9da6fc7d116, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10357,6 +10355,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1000010755293042, guid: 978fa2fb617654f5eaeff9da6fc7d116, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1581585910}
+    - targetCorrespondingSourceObject: {fileID: 1000010755293042, guid: 978fa2fb617654f5eaeff9da6fc7d116, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1581585911}
     - targetCorrespondingSourceObject: {fileID: 1000013388759578, guid: 978fa2fb617654f5eaeff9da6fc7d116, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1581585903}
@@ -10473,6 +10474,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Detected: 0
+--- !u!114 &1581585911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581585900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4fc54671e5b504cb1a079d9fd2e18d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateMachine: {fileID: 0}
+  enemyGO: {fileID: 1000010755293042, guid: 978fa2fb617654f5eaeff9da6fc7d116, type: 3}
+  animator: {fileID: 1581585912}
+--- !u!95 &1581585912 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95000011895321844, guid: 978fa2fb617654f5eaeff9da6fc7d116, type: 3}
+  m_PrefabInstance: {fileID: 1581585899}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1608948909
 PrefabInstance:
   m_ObjectHideFlags: 0

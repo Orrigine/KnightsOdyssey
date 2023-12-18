@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-
+    [SerializeField] private EnemyStateMachine _stateMachine;
     [SerializeField] public GameObject enemyGO;
     [SerializeField] public Animator animator;
     NavMeshAgent _nav;
@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
         enemyGO = GetComponent<GameObject>();
         animator = GetComponent<Animator>();
         _nav = GetComponent<NavMeshAgent>();
+
+        _stateMachine.ChangeState(new EnemyPatrolState());
     }
 
     // Update is called once per frame
@@ -23,22 +25,20 @@ public class Enemy : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        // if the GameObject is patroling, make him face the direction he is going
-        if (animator.GetBool("isPatroling"))
+
+        if (_stateMachine.currentState is EnemyPatrolState)
         {
-            if (_nav.destination.x > transform.position.x)
+            // rotate enemy to face direction of movement
+            Vector3 direction = _nav.velocity;
+            if (direction.magnitude > 0.1f)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            else if (_nav.destination.x < transform.position.x)
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
+                // just rotate right and left
 
-            // animate the GameObject
-            // animator
-
-            // }
+            }
+        }
+        else
+        {
+            animator.SetBool("isPatroling", false);
         }
     }
 }
