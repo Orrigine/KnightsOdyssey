@@ -11,15 +11,29 @@ public class LifePointUI : MonoBehaviour
     void Start()
     {
         _structPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<StructPlayer>();
-        _currentLifePoints = _structPlayer.transform.GetChild(3).GetComponent<LifeSystem>().CurrentLife;
+        _currentLifePoints = _structPlayer.CurrentLife;
     }
 
     void LateUpdate()
     {
-        int currentLife = _structPlayer.transform.GetChild(3).GetComponent<LifeSystem>().CurrentLife;
+        int currentLife = _structPlayer.CurrentLife;
         if (currentLife != _currentLifePoints)
         {
-            
+            _currentLifePoints = currentLife;
+            ChangeHeartUI();
+        }
+    }
+
+    void ChangeHeartUI()
+    {
+        foreach (GameObject go in _LifePoints)
+        {
+            go.SetActive(false);
+        }
+        
+        for (int i = 0; i < _currentLifePoints; i++)
+        {
+            _LifePoints[i].SetActive(true);
         }
     }
 }
