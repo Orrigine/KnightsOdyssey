@@ -7,7 +7,8 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] GameObject _attackHitbox;
     [SerializeField] GameObject _hugeAttack;
-    
+    [SerializeField] GameObject _arrow;
+
     private GameObject _attackHitboxInstance;
 
     public void Attack(Vector3 position, Quaternion rotation)
@@ -16,6 +17,7 @@ public class PlayerAttack : MonoBehaviour
         _attackHitboxInstance.GetComponent<Transform>().parent = gameObject.GetComponent<Transform>();
         _attackHitboxInstance.GetComponent<Transform>().position = position;
         _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
+        _attackHitboxInstance.transform.SetParent(null);
     }
 
     public void HugeAttack(Vector3 position, Quaternion rotation)
@@ -24,5 +26,16 @@ public class PlayerAttack : MonoBehaviour
         _attackHitboxInstance.GetComponent<Transform>().parent = gameObject.GetComponent<Transform>();
         _attackHitboxInstance.GetComponent<Transform>().position = position;
         _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
+        _attackHitboxInstance.transform.SetParent(null);
+    }
+
+    public void Arrow(Vector3 position, Quaternion rotation)
+    {
+        _attackHitboxInstance = Instantiate(_arrow);
+        _attackHitboxInstance.GetComponent<Transform>().parent = gameObject.GetComponent<Transform>();
+        _attackHitboxInstance.GetComponent<Transform>().position = position;
+        _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
+        _attackHitboxInstance.GetComponent<Rigidbody2D>().velocity = transform.up * 10;
+        _attackHitboxInstance.transform.SetParent(null);
     }
 }

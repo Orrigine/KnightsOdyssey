@@ -29,9 +29,4 @@ public class HitBox : MonoBehaviour
         if (_lifeTime <= 0)
             Destroy(gameObject);
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("Hit at " + Damage);
-    }
 }

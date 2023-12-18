@@ -8,7 +8,8 @@ public class EnemyPatrol : MonoBehaviour
     private int posX;
     private int posY;
     public bool Detected = false;
-    private int Timer = 0;
+
+    private Coroutine _patrol;
 
     NavMeshAgent _nav;
 
@@ -18,17 +19,14 @@ public class EnemyPatrol : MonoBehaviour
         _nav = GetComponent<NavMeshAgent>();
         if(!Detected)
         {
-           StartCoroutine(Patrol());
+           _patrol = StartCoroutine(Patrol());
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Detected)
-        {
-            StopCoroutine(Patrol());
-        }
+
     }
 
     IEnumerator Patrol()
@@ -37,6 +35,8 @@ public class EnemyPatrol : MonoBehaviour
         {
             posX = Random.Range(-10, 10);
             posY = Random.Range(-10, 10);
+
+            Debug.Log("Patrolling");
 
             Vector3 destination = new Vector3(posX + transform.position.x, posY + transform.position.y, 0);
             _nav.SetDestination(destination);
@@ -49,6 +49,7 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            StopCoroutine(_patrol);
             Detected = true;
         }
     }
@@ -58,6 +59,7 @@ public class EnemyPatrol : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Detected = false;
+            _patrol = StartCoroutine(Patrol());
         }
     }
 }
