@@ -11,18 +11,22 @@ public class BehaviorTreeEditorWindow : EditorWindow
 	public VisualTreeAsset behaviourTreeXml;
 	public StyleSheet behaviorTreeStyle;
 
-	private BehaviorTreeView _behaviorTreeView;
+	public static BehaviorTreeEditorWindow Instance;
+
+	public BehaviorTreeView behaviorTreeView;
 
 
 	[MenuItem("Blyat/suka")]
 	public static void ShowWindow()
 	{
 		BehaviorTreeEditorWindow window = GetWindow<BehaviorTreeEditorWindow>();
+		Instance = window;
 	}
 
 	public static void ShowWindow(BehaviorTree asset)
 	{
 		BehaviorTreeEditorWindow window = GetWindow<BehaviorTreeEditorWindow>();
+		Instance = window;
 		window.OpenTree(asset);
 	}
 
@@ -45,13 +49,13 @@ public class BehaviorTreeEditorWindow : EditorWindow
 
 		root.styleSheets.Add(behaviorTreeStyle);
 
-		_behaviorTreeView = root.Q<BehaviorTreeView>();
+		behaviorTreeView = root.Q<BehaviorTreeView>();
 	}
 
 
 
 	private void OpenTree(BehaviorTree tree)
 	{
-		_behaviorTreeView?.PopulateView(tree);
+		behaviorTreeView?.PopulateView(tree);
 	}
 }

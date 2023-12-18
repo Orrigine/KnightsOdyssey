@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class NodeLog : Node
+public class NodeLog : NodeAction
 {
 	[SerializeField]
 	public string message;

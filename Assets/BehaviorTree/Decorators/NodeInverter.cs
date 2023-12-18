@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeInverter : Node
+public class NodeInverter : NodeDecorator
 {
 	public NodeInverter()
 	{

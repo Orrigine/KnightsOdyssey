@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeSelector : Node
+public class NodeSelector : NodeComposite
 {
 	public NodeSelector()
 	{

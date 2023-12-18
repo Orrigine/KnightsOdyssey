@@ -10,7 +10,5 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
 	{
 		_node = node;
 		this.title = node.Name;
-
-		Debug.Log(node.Name);
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class NodeRepeat : Node
+public class NodeRepeat : NodeDecorator
 {
 	public bool restartOnSuccess = true;
 	public bool restartOnFailure = false;

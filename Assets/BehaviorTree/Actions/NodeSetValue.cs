@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class NodeSetValue : Node
+public class NodeSetValue : NodeAction
 {
 	// The key/value pair from the blackboard instance.
 	[SerializeReference]
