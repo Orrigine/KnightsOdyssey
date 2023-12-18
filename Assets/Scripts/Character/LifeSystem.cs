@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LifeSystem : MonoBehaviour
 {
-    private int maxLife = 3;
+    [SerializeField] private int _maxLife = 3;
     [SerializeField] private int _currentLife = 3;
     [SerializeField] private bool _isDead = false;
     [SerializeField] private bool _isInvincible = false;
@@ -22,8 +22,8 @@ public class LifeSystem : MonoBehaviour
     
     public int MaxLife
     {
-        get => maxLife;
-        set => maxLife = value;
+        get => _maxLife;
+        set => _maxLife = value;
     }
     
     public bool IsDead

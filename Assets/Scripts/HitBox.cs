@@ -14,10 +14,13 @@ public class HitBox : MonoBehaviour
         get => _damage;
         set => _damage = value;
     }
-    
+
     void Start()
     {
-        gameObject.GetComponent<CircleCollider2D>().radius = _size / 2; 
+        if (gameObject.GetComponent<CircleCollider2D>() != null)
+        {
+            gameObject.GetComponent<CircleCollider2D>().radius = _size / 2;
+        }    
     }
 
     private void FixedUpdate()

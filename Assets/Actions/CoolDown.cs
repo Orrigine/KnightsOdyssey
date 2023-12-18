@@ -15,12 +15,12 @@ public class CoolDown : ActionNode
     protected override State OnUpdate() {
         if(blackboard.GetValue<float>("Cooldown") > 0)
         {
-            blackboard.SetValue<float>("Cooldown", blackboard.GetValue<float>("Cooldown") - Time.deltaTime * 2);
+            blackboard.SetValue<float>("Cooldown", blackboard.GetValue<float>("Cooldown") - Time.deltaTime);
             return State.Success;
         }
         else if(blackboard.GetValue<float>("Cooldown") <= 0)
         {
-            blackboard.SetValue<float>("Cooldown", 1.5f);
+            blackboard.SetValue<float>("Cooldown", blackboard.GetValue<float>("CoolDownValue"));
             return State.Success;
         }
         return State.Success;
