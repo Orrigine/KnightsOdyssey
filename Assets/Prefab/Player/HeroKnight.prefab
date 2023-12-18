@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6916177156446643571}
   - component: {fileID: 7408837118466230147}
   - component: {fileID: 181847706624816984}
+  - component: {fileID: 1966919880916531481}
   m_Layer: 0
   m_Name: BodyModule
   m_TagString: Untagged
@@ -93,6 +94,20 @@ MonoBehaviour:
   _currentLife: 3
   _isDead: 0
   _isInvincible: 0
+--- !u!114 &1966919880916531481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2888917538791287528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd452d824a20464da4ab88987ba2017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeSystem: {fileID: 0}
+  _brain: {fileID: 7174210895514623767}
 --- !u!1 &3397683694061853268
 GameObject:
   m_ObjectHideFlags: 0

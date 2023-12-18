@@ -10,25 +10,20 @@ public class Sandbag : MonoBehaviour
     
     private Coroutine _attackCoroutine;
 
-    private void Start()
+    private void Awake()
     {
-        
-    }
-    
-    private void Update()
-    {
-        if (_attackCoroutine == null && isAttacking == true)
-            _attackCoroutine = StartCoroutine(Attack());
+        StartCoroutine(Attack());
     }
     
     private IEnumerator Attack()
     {
-        Vector3 origin = transform.position;
-        Vector3 position = origin + new Vector3(1.5f, 1f, 0);
-        GameObject hitbox = Instantiate(_hitboxPrefab, position, Quaternion.identity);
-        hitbox.transform.parent = transform;
-
-        yield return new WaitForSeconds(1.5f);
-        _attackCoroutine = null;
+        while (true)
+        {
+            Vector3 origin = transform.position;
+            Vector3 position = origin + new Vector3(-1.5f, 0, 0);
+            GameObject hitbox = Instantiate(_hitboxPrefab, position, Quaternion.identity);
+            hitbox.transform.parent = transform;
+            yield return new WaitForSeconds(1.5f);
+        }
     }
 }

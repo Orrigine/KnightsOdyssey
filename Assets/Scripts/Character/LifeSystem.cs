@@ -27,6 +27,12 @@ public class LifeSystem : MonoBehaviour
         get => _isDead;
         set => _isDead = value;
     }
+    
+    public bool IsInvincible
+    {
+        get => _isInvincible;
+        set => _isInvincible = value;
+    }
 
     void Start()
     {
@@ -54,5 +60,18 @@ public class LifeSystem : MonoBehaviour
         {
             CurrentLife -= amount;
         }
+    }
+    
+    public void SetInvincible(float duration)
+    {
+        StartCoroutine(Invincible(duration));
+    }
+    
+    private IEnumerator Invincible(float duration)
+    {
+        _isInvincible = true;
+        yield return new WaitForSeconds(duration);
+        _isInvincible = false;
+        yield break;
     }
 }

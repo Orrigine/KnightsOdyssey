@@ -7,17 +7,21 @@ public class HeroKnight : MonoBehaviour {
     [SerializeField] float      m_speed = 4.0f;
     [SerializeField] float      m_rollForce = 6.0f;
     [SerializeField] bool       m_noBlood = false;
+    
     [SerializeField] GameObject _renderModule;
     [SerializeField] GameObject _bodyModule;
     [SerializeField] GameObject _actionModule;
     [SerializeField] StructPlayer _structPlayer;
     
+    private LifeSystem          _lifeSystem;
     private SpriteRenderer      _spriteRenderer;
     private Aiming              _aiming;
 
     private Animator            _animator;
     private Rigidbody2D         _body2d;
     private bool                _rolling = false;
+    private bool                _isBlocking = false;
+    private bool                _isDead = false;
     private int                 _facingDirection = 1;
     private int                 _currentAttack = 0;
     private float               _timeSinceAttack = 0.0f;
@@ -25,6 +29,12 @@ public class HeroKnight : MonoBehaviour {
     private float               _rollDuration = 8.0f / 14.0f;
     private float               _rollCurrentTime;
 
+    public bool IsBlocking
+    {
+        get { return _isBlocking; }
+        set { _isBlocking = value; }
+    }
+    
     public int FacingDirection
     {
         get { return _facingDirection; }
@@ -36,8 +46,9 @@ public class HeroKnight : MonoBehaviour {
     void Start ()
     {
         _structPlayer.MaxLife = _bodyModule.GetComponent<LifeSystem>().MaxLife;
-        _spriteRenderer = _renderModule.GetComponent<SpriteRenderer>();
         _aiming = _actionModule.GetComponent<Aiming>();
+        _lifeSystem = _bodyModule.GetComponent<LifeSystem>();
+        _spriteRenderer = _renderModule.GetComponent<SpriteRenderer>();
         _animator = _renderModule.GetComponent<Animator>();
         _body2d = gameObject.transform.parent.GetComponent<Rigidbody2D>();
         _animator.SetBool("Grounded", true);
@@ -80,8 +91,7 @@ public class HeroKnight : MonoBehaviour {
         }
 
 
-        // -- Handle Animations --
-
+        // -- Handle Animations -- //
         //Death
         if (Input.GetKeyDown("e") && !_rolling)
             Die();
@@ -125,7 +135,7 @@ public class HeroKnight : MonoBehaviour {
 
     private void LateUpdate()
     {
-        _structPlayer.CurrentLife = _bodyModule.GetComponent<LifeSystem>().CurrentLife;
+        _structPlayer.CurrentLife = _lifeSystem.CurrentLife;
     }
 
     private void Die()
@@ -177,13 +187,23 @@ public class HeroKnight : MonoBehaviour {
     public void Block()
     {
         _animator.SetTrigger("Block");
+        StartCoroutine(Blocking());
         _animator.SetBool("IdleBlock", true);
+    }
+    
+    private IEnumerator Blocking()
+    {
+        _isBlocking = true;
+        yield return new WaitForSeconds(0.5f);
+        _isBlocking = false;
+        yield break;
     }
 
     public void Roll()
     {
         _rolling = true;
         _animator.SetTrigger("Roll");
+        _lifeSystem.SetInvincible(_rollDuration);
         _body2d.velocity = new Vector2(_facingDirection * m_rollForce, _body2d.velocity.y);
     }
 }
