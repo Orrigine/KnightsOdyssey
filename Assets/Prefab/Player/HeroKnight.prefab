@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6916177156446643571}
   - component: {fileID: 7408837118466230147}
   - component: {fileID: 181847706624816984}
+  - component: {fileID: 1966919880916531481}
   m_Layer: 0
   m_Name: BodyModule
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,6 +94,20 @@ MonoBehaviour:
   _currentLife: 3
   _isDead: 0
   _isInvincible: 0
+--- !u!114 &1966919880916531481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2888917538791287528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd452d824a20464da4ab88987ba2017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeSystem: {fileID: 0}
+  _brain: {fileID: 7174210895514623767}
 --- !u!1 &3397683694061853268
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 576910207890239900}
   - component: {fileID: 5846560053192026668}
-  - component: {fileID: 7998189863018907885}
+  - component: {fileID: 56269769706212250}
   m_Layer: 0
   m_Name: HeroKnight
   m_TagString: Player
@@ -157,7 +172,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &7998189863018907885
+--- !u!114 &56269769706212250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,7 +238,7 @@ MonoBehaviour:
   _renderModule: {fileID: 8686188340762219682}
   _bodyModule: {fileID: 2888917538791287528}
   _actionModule: {fileID: 7627723596819539572}
-  _structPlayer: {fileID: 7998189863018907885}
+  _structPlayer: {fileID: 56269769706212250}
 --- !u!1 &7627723596819539572
 GameObject:
   m_ObjectHideFlags: 0
