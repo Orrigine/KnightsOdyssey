@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class EnemyState : MonoBehaviour
 {
     public virtual void Enter()

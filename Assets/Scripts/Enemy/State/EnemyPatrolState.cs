@@ -17,6 +17,7 @@ public class EnemyPatrolState : EnemyState
         _nav = GetComponent<NavMeshAgent>();
     }
 
+
     public override void Enter()
     {
         _animator.SetBool("isPatroling", true);

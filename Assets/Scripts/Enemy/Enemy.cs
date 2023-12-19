@@ -13,14 +13,13 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyGO = GetComponent<GameObject>();
         animator = GetComponent<Animator>();
         _nav = GetComponent<NavMeshAgent>();
 
-        _stateMachine.currentState = _stateMachine._states[0];
+        _stateMachine.currentState = _stateMachine._patrolState;
 
         // FIXME: SENDING NULL
-        _stateMachine.ChangeState(new EnemyPatrolState());
+        // _stateMachine.ChangeState(_stateMachine._patrolState);
 
 
     }
@@ -34,10 +33,6 @@ public class Enemy : MonoBehaviour
         if (_stateMachine.currentState is EnemyPatrolState)
         {
             // destination
-
-
-
-
 
         }
         else

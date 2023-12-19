@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAttackState : EnemyState
 {
+    EnemyAttackState Instance;
     private Animator _animator;
 
     public void Awake()
