@@ -17,17 +17,19 @@ public class BehaviorTreeEditorWindow : EditorWindow
 	public BehaviorTreeView behaviorTreeView;
 
 
-	[MenuItem("Blyat/suka")]
+	[MenuItem("Knight's Odyssey/Behavior Tree Editor")]
 	public static void ShowWindow()
 	{
 		BehaviorTreeEditorWindow window = GetWindow<BehaviorTreeEditorWindow>();
 		Instance = window;
+		window.titleContent.text = "Behavior Tree Editor";
 	}
 
 	public static void ShowWindow(BehaviorTree asset)
 	{
 		BehaviorTreeEditorWindow window = GetWindow<BehaviorTreeEditorWindow>();
 		Instance = window;
+		window.titleContent.text = "Behavior Tree Editor";
 		window.OpenTree(asset);
 	}
 
