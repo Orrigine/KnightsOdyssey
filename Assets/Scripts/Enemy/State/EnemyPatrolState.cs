@@ -5,26 +5,43 @@ using UnityEngine.AI;
 
 public class EnemyPatrolState : EnemyState
 {
-    [SerializeField] public Animator _animator;
-    [SerializeField] public NavMeshAgent _nav;
+    public bool Detected = false;
+    private Animator _animator;
+    private NavMeshAgent _nav;
     private int posX;
     private int posY;
+
+    public void Awake()
+    {
+        _animator = GetComponent<Animator>();
+        _nav = GetComponent<NavMeshAgent>();
+    }
+
     public override void Enter()
     {
         _animator.SetBool("isPatroling", true);
-        StartCoroutine(Patrol());
-        base.Enter();
+        if (!Detected)
+        {
+            StartCoroutine(Patrol());
+        }
     }
 
     public override void Execute()
     {
-        base.Execute();
+        if (Detected)
+        {
+            StopCoroutine(Patrol());
+        }
+        else if (!Detected)
+        {
+            StartCoroutine(Patrol());
+        }
     }
 
     public override void Exit()
     {
         _animator.SetBool("isPatroling", false);
-        base.Exit();
+        StopCoroutine(Patrol());
     }
 
     IEnumerator Patrol()

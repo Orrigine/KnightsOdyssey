@@ -17,7 +17,12 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         _nav = GetComponent<NavMeshAgent>();
 
+        _stateMachine.currentState = _stateMachine._states[0];
+
+        // FIXME: SENDING NULL
         _stateMachine.ChangeState(new EnemyPatrolState());
+
+
     }
 
     // Update is called once per frame
@@ -28,13 +33,12 @@ public class Enemy : MonoBehaviour
 
         if (_stateMachine.currentState is EnemyPatrolState)
         {
-            // rotate enemy to face direction of movement
-            Vector3 direction = _nav.velocity;
-            if (direction.magnitude > 0.1f)
-            {
-                // just rotate right and left
+            // destination
 
-            }
+
+
+
+
         }
         else
         {

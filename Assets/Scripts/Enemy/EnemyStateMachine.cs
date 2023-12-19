@@ -29,4 +29,10 @@ public class EnemyStateMachine : MonoBehaviour
             currentState.Execute();
         }
     }
+
+    void OnDestroy()
+    {
+        // FIXME: Doesn't reset to null the field
+        currentState = null;
+    }
 }

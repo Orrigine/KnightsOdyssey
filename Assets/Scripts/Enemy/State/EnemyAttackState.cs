@@ -5,7 +5,12 @@ using UnityEngine.AI;
 
 public class EnemyAttackState : EnemyState
 {
-    [SerializeField] public Animator _animator;
+    private Animator _animator;
+
+    public void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     public override void Enter()
     {

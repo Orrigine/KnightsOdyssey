@@ -6,7 +6,12 @@ using UnityEngine.AI;
 #region EnemyIdleState
 public class EnemyIdleState : EnemyState
 {
-    [SerializeField] public Animator _animator;
+    private Animator _animator;
+
+    public void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
     public override void Enter()
     {
         _animator.SetBool("isIdle", true);
