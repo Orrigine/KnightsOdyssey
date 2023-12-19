@@ -45225,6 +45225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight
       objectReference: {fileID: 0}
+    - target: {fileID: 6007878971643749558, guid: 834e5ab5979746149a6b60a23fc7b96f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45405,8 +45409,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00014999509, y: -0.00019997358, z: 0}
-    m_Extent: {x: 0.99735, y: 0.9982, z: 0}
+    m_Center: {x: 0.00040000677, y: -0.00034999847, z: 0}
+    m_Extent: {x: 0.9975, y: 0.99765, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
