@@ -10,7 +10,7 @@ public class EnemyIdleState : EnemyState
 
     public void Awake()
     {
-        _animator = GetComponent<Animator>();
+        // _animator = GetComponent<Animator>();
     }
     public override void Enter()
     {

@@ -5,18 +5,12 @@ using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
 
-[System.Serializable]
-public struct StateKV
-{
-    string name;
-    EnemyState state;
-}
-
 public class EnemyStateMachine : MonoBehaviour
 {
     public List<EnemyState> _states;
     public EnemyState currentState;
     public EnemyState remainState;
+
     public EnemyIdleState enemyIdleState;
     public EnemyPatrolState patrolState;
     public EnemyAttackState enemyAttackState;
@@ -25,9 +19,10 @@ public class EnemyStateMachine : MonoBehaviour
     {
         _states = new();
         // Instantiate all the states
-        _idleState = GetComponentInChildren<EnemyIdleState>();
-        _patrolState = GetComponentInChildren<EnemyPatrolState>();
-        _attackState = GetComponentInChildren<EnemyAttackState>();
+        enemyIdleState = GetComponentInChildren<EnemyIdleState>();
+        patrolState = GetComponentInChildren<EnemyPatrolState>();
+        enemyAttackState = GetComponentInChildren<EnemyAttackState>();
+        Debug.Log("EnemyStateMachine Awake");
     }
 
     public void Start()
@@ -48,15 +43,11 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void Update()
     {
+        Debug.Log("EnemyStateMachine Update");
+
         if (currentState != null)
         {
             currentState.Execute();
         }
-    }
-
-    void OnDestroy()
-    {
-        // FIXME: Doesn't reset to null the field
-        currentState = null;
     }
 }

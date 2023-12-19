@@ -15,8 +15,9 @@ public class Enemy : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         _nav = GetComponent<NavMeshAgent>();
+        _stateMachine = GetComponentInChildren<EnemyStateMachine>();
 
-        _stateMachine.currentState = _stateMachine._patrolState;
+        _stateMachine.ChangeState(_stateMachine.patrolState);
 
         // FIXME: SENDING NULL
         // _stateMachine.ChangeState(_stateMachine._patrolState);
@@ -32,7 +33,7 @@ public class Enemy : MonoBehaviour
 
         if (_stateMachine.currentState is EnemyPatrolState)
         {
-            // destination
+            animator.SetBool("isPatroling", true);
 
         }
         else

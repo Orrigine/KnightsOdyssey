@@ -5,18 +5,17 @@ using UnityEngine.AI;
 
 public class EnemyAttackState : EnemyState
 {
-    EnemyAttackState Instance;
     private Animator _animator;
 
     public void Awake()
     {
-        _animator = GetComponent<Animator>();
+        // _animator = GetComponent<Animator>();
     }
 
     public override void Enter()
     {
         _animator.SetBool("isAttacking", true);
-        StartCoroutine(Attack());
+        // StartCoroutine(Attack());
         base.Enter();
     }
 
@@ -31,12 +30,12 @@ public class EnemyAttackState : EnemyState
         base.Exit();
     }
 
-    IEnumerator Attack()
-    {
-        while (true)
-        {
+    // IEnumerator Attack()
+    // {
+    //     while (true)
+    //     {
 
-            yield return new WaitForSeconds(5f);
-        }
-    }
+    //         yield return new WaitForSeconds(5f);
+    //     }
+    // }
 }

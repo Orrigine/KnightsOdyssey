@@ -9,30 +9,49 @@ public class EnemyPatrol : MonoBehaviour
     private int posY;
     public bool Detected = false;
     private int Timer = 0;
+    private bool _triggerPatrol = false;
 
     NavMeshAgent _nav;
+
+    // Ajoutez une référence à EnemyStateMachine
+    [SerializeField] private EnemyStateMachine _enemyStateMachine;
 
     // Start is called before the first frame update
     void Start()
     {
         _nav = GetComponent<NavMeshAgent>();
-        if(!Detected)
-        {
-           StartCoroutine(Patrol());
-        }
+
+        // Obtenez le composant EnemyStateMachine
+
+        _enemyStateMachine = GetComponentInChildren<EnemyStateMachine>();
+
+
+        Debug.Log("EnemyPatrol Start");
+        Debug.Log("State ======= ", _enemyStateMachine);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Vérifiez l'état de EnemyStateMachine
+        if (_enemyStateMachine.currentState is EnemyPatrolState)
+        {
+            if (!Detected)
+            {
+                StartCoroutine(Patrol());
+            }
+        }
+
         if (Detected)
         {
             StopCoroutine(Patrol());
+            _triggerPatrol = false;
         }
     }
 
     IEnumerator Patrol()
     {
+
         while (true)
         {
             posX = Random.Range(-10, 10);
