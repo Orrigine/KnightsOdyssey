@@ -43,7 +43,6 @@ public class LifeSystem : MonoBehaviour
         CurrentLife = MaxLife;
         OnHeal += () => { Debug.Log("Heal"); };
         OnTakeDamage += () => { Debug.Log("TakeDamage"); };
-        OnTakeDamage += TakeDamage;
         OnDeath += () => { Debug.Log("Death"); };
     }
 
@@ -58,6 +57,7 @@ public class LifeSystem : MonoBehaviour
     
     private void Heal(int amount)
     {
+        OnHeal?.Invoke();
         CurrentLife += amount;
         if (CurrentLife > MaxLife)
             CurrentLife = MaxLife;
@@ -65,6 +65,7 @@ public class LifeSystem : MonoBehaviour
     
     public void TakeDamage()
     {
+        OnTakeDamage?.Invoke();
         if (!_isInvincible)
         {
             CurrentLife--;
