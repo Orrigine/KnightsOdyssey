@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TheKiwiCoder;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -12,13 +13,30 @@ public class BehaviorTreeView : GraphView
 
 	public static int gridSnapSize = 16;
 
+	protected override bool canCopySelection => true;
+
+	protected override bool canCutSelection => false; // Cut not supported right now
+
+	protected override bool canPaste => true;
+
+	protected override bool canDuplicateSelection => true;
+
+	protected override bool canDeleteSelection => true;
+
 	private BehaviorTree _tree;
 
 
 	public BehaviorTreeView()
     {
+		// Basic functionality.
         Insert(0, new GridBackground());
-    }
+
+		this.AddManipulator(new ContentZoomer());
+		this.AddManipulator(new ContentDragger());
+		this.AddManipulator(new HierarchySelector());
+		this.AddManipulator(new SelectionDragger());
+		this.AddManipulator(new RectangleSelector());
+	}
 
 
 	public void OpenTree(BehaviorTree tree)

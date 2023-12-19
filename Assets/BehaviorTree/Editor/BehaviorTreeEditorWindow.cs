@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TheKiwiCoder;
 using UnityEditor;
 using UnityEditor.Callbacks;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -50,6 +51,8 @@ public class BehaviorTreeEditorWindow : EditorWindow
 		root.styleSheets.Add(behaviorTreeStyle);
 
 		behaviorTreeView = root.Q<BehaviorTreeView>();
+
+		behaviorTreeView.styleSheets.Add(behaviorTreeStyle);
 	}
 
 

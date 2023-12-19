@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TheKiwiCoder;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class NodeView : UnityEditor.Experimental.GraphView.Node
@@ -12,6 +13,8 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
 		_node = node;
 
 		title = node.Name;
+		capabilities &= ~(Capabilities.Snappable);
+
 		style.left = node.position.x;
 		style.top = node.position.y;
 	}
