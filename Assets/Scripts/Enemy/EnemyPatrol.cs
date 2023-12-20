@@ -31,15 +31,14 @@ public class EnemyPatrol : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        // Vérifiez l'état de EnemyStateMachine
+        // // Vérifiez l'état de EnemyStateMachine
         if (_enemyStateMachine != null && _enemyStateMachine.currentState is EnemyPatrolState)
         {
             if (!Detected && _patrol == null)
             {
-                // _enemyStateMachine
-                // _enemyStateMachine.ChangeState(_enemyStateMachine.patrolState);
+                Debug.Log(this.gameObject.name + " is patrolling");
                 _patrol = StartCoroutine(Patrol());
-                // Debug.LogWarning("Coroutine is null");
+
             }
         }
 

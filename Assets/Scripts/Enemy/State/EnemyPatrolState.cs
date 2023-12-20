@@ -10,6 +10,7 @@ public class EnemyPatrolState : EnemyState
     [SerializeField] private NavMeshAgent _nav;
     private int posX;
     private int posY;
+    private Coroutine _patrol;
 
     public void Awake()
     {
@@ -21,15 +22,41 @@ public class EnemyPatrolState : EnemyState
     public override void Enter()
     {
         _animator.SetBool("isPatroling", true);
+
     }
 
     public override void Execute()
     {
-        base.Execute();
+
+        // if (!Detected && _patrol == null)
+        // {
+        //     Debug.Log(this.gameObject.name + " is patrolling");
+        //     _patrol = StartCoroutine(Patrol());
+        // }
+        // else if (Detected)
+        // {
+        //     StopCoroutine(_patrol);
+
+        // }
     }
 
     public override void Exit()
     {
+        // StopCoroutine(_patrol);
         _animator.SetBool("isPatroling", false);
+    }
+
+    IEnumerator Patrol()
+    {
+        while (true)
+        {
+            posX = Random.Range(-10, 10);
+            posY = Random.Range(-10, 10);
+
+            Vector3 destination = new Vector3(posX + transform.position.x, posY + transform.position.y, 0);
+            _nav.SetDestination(destination);
+
+            yield return new WaitForSeconds(5f);
+        }
     }
 }
