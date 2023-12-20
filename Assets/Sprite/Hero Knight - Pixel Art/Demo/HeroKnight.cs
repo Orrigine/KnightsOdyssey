@@ -66,7 +66,6 @@ public class HeroKnight : MonoBehaviour {
         m_animator.SetBool("Grounded", true);
         
         m_lifeSystem.OnDeath += Die;
-        m_lifeSystem.OnDeath += m_audioCharacter.DeathSound;
         m_lifeSystem.OnTakeDamage += TakeDamage;
         m_lifeSystem.OnTakeDamage += m_audioCharacter.HurtSound;
         m_lifeSystem.OnHeal += m_audioCharacter.HealSound;
@@ -75,9 +74,6 @@ public class HeroKnight : MonoBehaviour {
     // Update is called once per frame
     private void Update ()
     {
-        if (m_lifeSystem.IsDead) 
-            return;
-        
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
@@ -112,14 +108,14 @@ public class HeroKnight : MonoBehaviour {
         }
 
         //Attack
-        if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling && !m_lifeSystem.IsDead)
+        if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             m_audioCharacter.AttackSound();
             Attack();
         }
 
         // Block
-        else if (Input.GetMouseButtonDown(1) && !m_rolling && !m_lifeSystem.IsDead)
+        else if (Input.GetMouseButtonDown(1) && !m_rolling)
         {
             m_audioCharacter.SecondarySound();
             Block();
@@ -132,14 +128,14 @@ public class HeroKnight : MonoBehaviour {
         }
 
         // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_lifeSystem.IsDead)
+        else if (Input.GetKeyDown("left shift") && !m_rolling)
         {
             m_audioCharacter.RunSound();
             Roll();
         }
 
         //Run
-        else if (Mathf.Abs(inputMove.x) > Mathf.Epsilon || Mathf.Abs(inputMove.y) > Mathf.Epsilon && !m_lifeSystem.IsDead)
+        else if (Mathf.Abs(inputMove.x) > Mathf.Epsilon || Mathf.Abs(inputMove.y) > Mathf.Epsilon)
         {
             // Reset timer
             m_delayToIdle = 0.05f;
@@ -163,6 +159,7 @@ public class HeroKnight : MonoBehaviour {
 
     private void Die()
     {
+        m_audioCharacter.DeathSound();
         m_animator.SetBool("noBlood", m_noBlood);
         m_animator.SetTrigger("Death");
     }
