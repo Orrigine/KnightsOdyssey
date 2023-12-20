@@ -11,34 +11,48 @@ public class Enemy : MonoBehaviour
     NavMeshAgent _nav;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         animator = GetComponent<Animator>();
         _nav = GetComponent<NavMeshAgent>();
-        _stateMachine = GetComponentInChildren<EnemyStateMachine>();
+        // _stateMachine = GetComponentInChildren<EnemyStateMachine>();
 
         _stateMachine.ChangeState(_stateMachine.patrolState);
 
         // FIXME: SENDING NULL
         // _stateMachine.ChangeState(_stateMachine._patrolState);
 
-
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
 
         if (_stateMachine.currentState is EnemyPatrolState)
         {
-            animator.SetBool("isPatroling", true);
+            bool facingRight = _nav.velocity.x >= 0;
+            enemyGO.transform.localScale = new Vector3(facingRight ? -1.0F : 1.0F, 1.0F, 1.0F);
 
+
+            // if the enemy has reached his destination, go idle state
+            if (_nav.remainingDistance <= _nav.stoppingDistance && !_nav.pathPending)
+            {
+                _stateMachine.ChangeState(_stateMachine.enemyIdleState);
+            }
+
+            if (_stateMachine.patrolState.Detected)
+            {
+                _stateMachine.ChangeState(_stateMachine.enemyAttackState);
+            }
         }
-        else
+        else if (_stateMachine.currentState is EnemyIdleState)
         {
-            animator.SetBool("isPatroling", false);
+            if (_nav.remainingDistance > _nav.stoppingDistance && !_nav.pathPending)
+            {
+                _stateMachine.ChangeState(_stateMachine.patrolState);
+            }
         }
     }
 }

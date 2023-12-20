@@ -19,10 +19,9 @@ public class EnemyStateMachine : MonoBehaviour
     {
         _states = new();
         // Instantiate all the states
-        enemyIdleState = GetComponentInChildren<EnemyIdleState>();
-        patrolState = GetComponentInChildren<EnemyPatrolState>();
-        enemyAttackState = GetComponentInChildren<EnemyAttackState>();
-        Debug.Log("EnemyStateMachine Awake");
+        //enemyIdleState = GetComponentInChildren<EnemyIdleState>();
+        //patrolState = GetComponentInChildren<EnemyPatrolState>();
+        //enemyAttackState = GetComponentInChildren<EnemyAttackState>();
     }
 
     public void Start()
@@ -43,8 +42,6 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void Update()
     {
-        Debug.Log("EnemyStateMachine Update");
-
         if (currentState != null)
         {
             currentState.Execute();

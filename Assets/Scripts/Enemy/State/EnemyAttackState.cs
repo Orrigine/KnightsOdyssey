@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAttackState : EnemyState
 {
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
 
     public void Awake()
     {

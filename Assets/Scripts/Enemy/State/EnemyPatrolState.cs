@@ -6,21 +6,21 @@ using UnityEngine.AI;
 public class EnemyPatrolState : EnemyState
 {
     public bool Detected = false;
-    [SerializeField] private Animator _animator;
+    [SerializeField] public Animator _animator;
     [SerializeField] private NavMeshAgent _nav;
     private int posX;
     private int posY;
 
     public void Awake()
     {
-        _animator = GetComponentInParent<Animator>();
+        // _animator = GetComponentInParent<Animator>();
         _nav = GetComponentInParent<NavMeshAgent>();
     }
 
 
     public override void Enter()
     {
-        base.Enter();
+        _animator.SetBool("isPatroling", true);
     }
 
     public override void Execute()
@@ -30,6 +30,6 @@ public class EnemyPatrolState : EnemyState
 
     public override void Exit()
     {
-        base.Exit();
+        _animator.SetBool("isPatroling", false);
     }
 }

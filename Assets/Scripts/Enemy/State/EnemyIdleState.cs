@@ -6,15 +6,16 @@ using UnityEngine.AI;
 #region EnemyIdleState
 public class EnemyIdleState : EnemyState
 {
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
 
     public void Awake()
     {
-        // _animator = GetComponent<Animator>();
+        _animator = GetComponentInParent<Animator>();
+        // _nav = GetComponentInParent<NavMeshAgent>();
     }
     public override void Enter()
     {
-        _animator.SetBool("isIdle", true);
+        _animator.SetBool("isIdling", true);
         base.Enter();
     }
 
@@ -25,7 +26,7 @@ public class EnemyIdleState : EnemyState
 
     public override void Exit()
     {
-        _animator.SetBool("isIdle", false);
+        _animator.SetBool("isIdling", false);
         base.Exit();
     }
 }
