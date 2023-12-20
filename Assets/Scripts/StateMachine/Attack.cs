@@ -33,7 +33,10 @@ public class Attack : StateMachineBehaviour
         else
         {
             _timer = 0f;
-            playerAttack.Attack(animator.transform.position, animator.transform.rotation);
+            Vector3 pos = playerPos.transform.position - animator.gameObject.transform.position;
+            pos = pos.normalized * 2;
+            pos += animator.gameObject.transform.position;
+            playerAttack.Attack(pos, animator.transform.rotation);
         }
     }
 

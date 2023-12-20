@@ -24,7 +24,6 @@ public class ChasePlayer : StateMachineBehaviour
         animator.SetFloat("AttackRange", agent.remainingDistance);
         if (!enemyPatrol.Detected)
         {
-            Debug.Log("Not Detected");
             animator.SetBool("OnChase", false);
         }
     }

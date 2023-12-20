@@ -60,7 +60,7 @@ MonoBehaviour:
     - rid: 8931511401659236356
     - rid: 8931511426302345222
     - rid: 8931511426302345224
-  viewPosition: {x: 769, y: 574, z: 0}
+  viewPosition: {x: 350, y: 486, z: 0}
   viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
   references:
     version: 2
@@ -168,7 +168,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 184d24af592a67245ad0e22dfc6ff051
-        position: {x: -345, y: -450}
+        position: {x: -375, y: -450}
         blackboard:
           keys: []
         description: 
@@ -323,7 +323,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 7a8ef85fa2ccaca41b00fd01c2e31ff6
-        position: {x: -180, y: -450}
+        position: {x: -210, y: -450}
         blackboard:
           keys: []
         description: 
