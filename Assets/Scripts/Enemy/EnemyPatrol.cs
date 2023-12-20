@@ -8,25 +8,45 @@ public class EnemyPatrol : MonoBehaviour
     private int posX;
     private int posY;
     public bool Detected = false;
-
+    private int Timer = 0;
+    private bool _triggerPatrol = false;
     private Coroutine _patrol;
 
     NavMeshAgent _nav;
 
+    // Ajoutez une référence à EnemyStateMachine
+    [SerializeField] private EnemyStateMachine _enemyStateMachine;
+
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         _nav = GetComponent<NavMeshAgent>();
-        if(!Detected)
-        {
-           _patrol = StartCoroutine(Patrol());
-        }
+
+        // Obtenez le composant EnemyStateMachine
+
+        //_enemyStateMachine = GetComponentInParent<EnemyStateMachine>();
+
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
+        // // Vérifiez l'état de EnemyStateMachine
+        if (_enemyStateMachine != null && _enemyStateMachine.currentState is EnemyPatrolState)
+        {
+            if (!Detected && _patrol == null)
+            {
+                Debug.Log(this.gameObject.name + " is patrolling");
+                _patrol = StartCoroutine(Patrol());
 
+            }
+        }
+
+        if (Detected)
+        {
+            StopCoroutine(_patrol);
+            _triggerPatrol = false;
+        }
     }
 
     IEnumerator Patrol()
@@ -43,7 +63,7 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -52,7 +72,7 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
