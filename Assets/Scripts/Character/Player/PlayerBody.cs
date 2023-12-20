@@ -21,13 +21,15 @@ public class PlayerBodyHitbox : MonoBehaviour
         {
             if (_brain.IsBlocking)
             {
+                if (!other.gameObject.transform.parent) return;
                 StartCoroutine(PushBack(other.gameObject.transform.parent.gameObject));
+                CinemachineShakeScreen.Instance.ShakeCamera(2.5f, 0.1f);
             }
             else
             {
                 _lifeSystem.TakeDamage();
+                CinemachineShakeScreen.Instance.ShakeCamera(5f, 0.1f);
             }
-            CinemachineShakeScreen.Instance.ShakeCamera(5f, 0.1f);
         }
     }
     
