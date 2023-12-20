@@ -6,24 +6,27 @@ using UnityEngine.Serialization;
 public class HeroKnight : MonoBehaviour {
 
     [FormerlySerializedAs("m_speed")] [SerializeField]
-    private float      speed = 4.0f;
+    private float      m_speed = 4.0f;
     [FormerlySerializedAs("m_rollForce")] [SerializeField]
-    private float      rollForce = 6.0f;
+    private float      m_rollForce = 16.0f;
     [FormerlySerializedAs("m_noBlood")] [SerializeField]
-    private bool       noBlood = false;
+    private bool       m_noBlood = false;
     
     [FormerlySerializedAs("_renderModule")] [SerializeField]
-    private GameObject renderModule;
+    private GameObject m_renderModule;
     [FormerlySerializedAs("_bodyModule")] [SerializeField]
-    private GameObject bodyModule;
+    private GameObject m_bodyModule;
     [FormerlySerializedAs("_actionModule")] [SerializeField]
-    private GameObject actionModule;
+    private GameObject m_actionModule;
+    [FormerlySerializedAs("_audioModule")] [SerializeField]
+    private GameObject m_audioModule;
     [FormerlySerializedAs("_structPlayer")] [SerializeField]
-    private StructPlayer structPlayer;
+    private StructPlayer m_structPlayer;
     
     private LifeSystem          m_lifeSystem;
     private SpriteRenderer      m_spriteRenderer;
     private Aiming              m_aiming;
+    private AudioCharacter      m_audioCharacter;
 
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
@@ -53,15 +56,20 @@ public class HeroKnight : MonoBehaviour {
     // Use this for initialization
     private void Start ()
     {
-        structPlayer.MaxLife = bodyModule.GetComponent<LifeSystem>().MaxLife;
-        m_aiming = actionModule.GetComponent<Aiming>();
-        m_lifeSystem = bodyModule.GetComponent<LifeSystem>();
-        m_spriteRenderer = renderModule.GetComponent<SpriteRenderer>();
-        m_animator = renderModule.GetComponent<Animator>();
+        m_structPlayer.MaxLife = m_bodyModule.GetComponent<LifeSystem>().MaxLife;
+        m_aiming = m_actionModule.GetComponent<Aiming>();
+        m_lifeSystem = m_bodyModule.GetComponent<LifeSystem>();
+        m_spriteRenderer = m_renderModule.GetComponent<SpriteRenderer>();
+        m_animator = m_renderModule.GetComponent<Animator>();
         m_body2d = gameObject.transform.parent.GetComponent<Rigidbody2D>();
+        m_audioCharacter = m_audioModule.GetComponent<AudioCharacter>();
         m_animator.SetBool("Grounded", true);
         
         m_lifeSystem.OnDeath += Die;
+        m_lifeSystem.OnDeath += m_audioCharacter.DeathSound;
+        m_lifeSystem.OnTakeDamage += TakeDamage;
+        m_lifeSystem.OnTakeDamage += m_audioCharacter.HurtSound;
+        m_lifeSystem.OnHeal += m_audioCharacter.HealSound;
     }
 
     // Update is called once per frame
@@ -85,13 +93,13 @@ public class HeroKnight : MonoBehaviour {
         Vector2 inputMove = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         // Swap direction of sprite depending on walk direction
-        if (inputMove.x > 0)
+        if (m_aiming.Direction.x > 0)
         {
             m_spriteRenderer.flipX = false;
             m_facingDirection = 1;
         }
             
-        else if (inputMove.x < 0)
+        else if (m_aiming.Direction.x < 0)
         {
             m_spriteRenderer.flipX = true;
             m_facingDirection = -1;
@@ -100,26 +108,38 @@ public class HeroKnight : MonoBehaviour {
         // Move
         if (!m_rolling && !m_lifeSystem.IsDead)
         {
-            m_body2d.velocity = new Vector2(inputMove.x * speed, inputMove.y * speed);
+            m_body2d.velocity = new Vector2(inputMove.x * m_speed, inputMove.y * m_speed);
         }
 
         //Attack
         if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling && !m_lifeSystem.IsDead)
+        {
+            m_audioCharacter.AttackSound();
             Attack();
+        }
 
         // Block
         else if (Input.GetMouseButtonDown(1) && !m_rolling && !m_lifeSystem.IsDead)
+        {
+            m_audioCharacter.SecondarySound();
             Block();
+        }
 
         else if (Input.GetMouseButtonUp(1))
+        {
+            m_audioCharacter.SecondarySound();
             m_animator.SetBool("IdleBlock", false);
+        }
 
         // Roll
         else if (Input.GetKeyDown("left shift") && !m_rolling && !m_lifeSystem.IsDead)
+        {
+            m_audioCharacter.RunSound();
             Roll();
+        }
 
         //Run
-        else if (Mathf.Abs(inputMove.x) > Mathf.Epsilon && !m_lifeSystem.IsDead)
+        else if (Mathf.Abs(inputMove.x) > Mathf.Epsilon || Mathf.Abs(inputMove.y) > Mathf.Epsilon && !m_lifeSystem.IsDead)
         {
             // Reset timer
             m_delayToIdle = 0.05f;
@@ -138,12 +158,12 @@ public class HeroKnight : MonoBehaviour {
 
     private void LateUpdate()
     {
-        structPlayer.CurrentLife = m_lifeSystem.CurrentLife;
+        m_structPlayer.CurrentLife = m_lifeSystem.CurrentLife;
     }
 
     private void Die()
     {
-        m_animator.SetBool("noBlood", noBlood);
+        m_animator.SetBool("noBlood", m_noBlood);
         m_animator.SetTrigger("Death");
     }
 
@@ -173,10 +193,10 @@ public class HeroKnight : MonoBehaviour {
             m_facingDirection = -1;
         }
     
-        Vector3 atkPos = actionModule.transform.position + m_aiming.Direction;
+        Vector3 atkPos = m_actionModule.transform.position + m_aiming.Direction;
         atkPos.z = 0;
         Quaternion atkRot = Quaternion.Euler(0, 0, Mathf.Atan2(atkPos.y, atkPos.x) * Mathf.Rad2Deg);
-        actionModule.GetComponent<PlayerAttack>().Attack(atkPos, atkRot);
+        m_actionModule.GetComponent<PlayerAttack>().Attack(atkPos, atkRot);
         
         // Reset timer
         m_timeSinceAttack = 0.0f;
@@ -207,6 +227,6 @@ public class HeroKnight : MonoBehaviour {
         m_rolling = true;
         m_animator.SetTrigger("Roll");
         m_lifeSystem.SetInvincible(m_rollDuration);
-        m_body2d.velocity = new Vector2(m_facingDirection * rollForce, m_body2d.velocity.y);
+        m_body2d.velocity = new Vector2(m_aiming.Direction.x * m_rollForce, m_aiming.Direction.y * m_rollForce);
     }
 }
