@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5406567267687000071}
   m_Layer: 0
   m_Name: CapsuleHitBox
-  m_TagString: Untagged
+  m_TagString: Hitbox
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,5 +81,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 0
-  _lifeTime: 0.1
+  _lifeTime: 0.2
   _size: 1

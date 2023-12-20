@@ -1,189 +1,232 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Serialization;
 
 public class HeroKnight : MonoBehaviour {
 
-    [SerializeField] float      m_speed = 4.0f;
-    [SerializeField] float      m_rollForce = 6.0f;
-    [SerializeField] bool       m_noBlood = false;
-    [SerializeField] GameObject _renderModule;
-    [SerializeField] GameObject _bodyModule;
-    [SerializeField] GameObject _actionModule;
-    [SerializeField] StructPlayer _structPlayer;
+    [FormerlySerializedAs("m_speed")] [SerializeField]
+    private float      m_speed = 4.0f;
+    [FormerlySerializedAs("m_rollForce")] [SerializeField]
+    private float      m_rollForce = 16.0f;
+    [FormerlySerializedAs("m_noBlood")] [SerializeField]
+    private bool       m_noBlood = false;
     
-    private SpriteRenderer      _spriteRenderer;
-    private Aiming              _aiming;
+    [FormerlySerializedAs("_renderModule")] [SerializeField]
+    private GameObject m_renderModule;
+    [FormerlySerializedAs("_bodyModule")] [SerializeField]
+    private GameObject m_bodyModule;
+    [FormerlySerializedAs("_actionModule")] [SerializeField]
+    private GameObject m_actionModule;
+    [FormerlySerializedAs("_audioModule")] [SerializeField]
+    private GameObject m_audioModule;
+    [FormerlySerializedAs("_structPlayer")] [SerializeField]
+    private StructPlayer m_structPlayer;
+    
+    private LifeSystem          m_lifeSystem;
+    private SpriteRenderer      m_spriteRenderer;
+    private Aiming              m_aiming;
+    private AudioCharacter      m_audioCharacter;
 
-    private Animator            _animator;
-    private Rigidbody2D         _body2d;
-    private bool                _rolling = false;
-    private int                 _facingDirection = 1;
-    private int                 _currentAttack = 0;
-    private float               _timeSinceAttack = 0.0f;
-    private float               _delayToIdle = 0.0f;
-    private float               _rollDuration = 8.0f / 14.0f;
-    private float               _rollCurrentTime;
+    private Animator            m_animator;
+    private Rigidbody2D         m_body2d;
+    private bool                m_rolling = false;
+    private bool                m_isBlocking = false;
+    private bool                m_isDead = false;
+    private int                 m_facingDirection = 1;
+    private int                 m_currentAttack = 0;
+    private float               m_timeSinceAttack = 0.0f;
+    private float               m_delayToIdle = 0.0f;
+    private readonly float      m_rollDuration = 8.0f / 14.0f;
+    private float               m_rollCurrentTime;
 
+    public bool IsBlocking
+    {
+        get { return m_isBlocking; }
+        set { m_isBlocking = value; }
+    }
+    
     public int FacingDirection
     {
-        get { return _facingDirection; }
-        set { _facingDirection = value; }
+        get { return m_facingDirection; }
+        set { m_facingDirection = value; }
     }
 
 
     // Use this for initialization
-    void Start ()
+    private void Start ()
     {
-        _structPlayer.MaxLife = _bodyModule.GetComponent<LifeSystem>().MaxLife;
-        _spriteRenderer = _renderModule.GetComponent<SpriteRenderer>();
-        _aiming = _actionModule.GetComponent<Aiming>();
-        _animator = _renderModule.GetComponent<Animator>();
-        _body2d = gameObject.transform.parent.GetComponent<Rigidbody2D>();
-        _animator.SetBool("Grounded", true);
+        m_structPlayer.MaxLife = m_bodyModule.GetComponent<LifeSystem>().MaxLife;
+        m_aiming = m_actionModule.GetComponent<Aiming>();
+        m_lifeSystem = m_bodyModule.GetComponent<LifeSystem>();
+        m_spriteRenderer = m_renderModule.GetComponent<SpriteRenderer>();
+        m_animator = m_renderModule.GetComponent<Animator>();
+        m_body2d = gameObject.transform.parent.GetComponent<Rigidbody2D>();
+        m_audioCharacter = m_audioModule.GetComponent<AudioCharacter>();
+        m_animator.SetBool("Grounded", true);
+        
+        m_lifeSystem.OnDeath += Die;
+        m_lifeSystem.OnDeath += m_audioCharacter.DeathSound;
+        m_lifeSystem.OnTakeDamage += TakeDamage;
+        m_lifeSystem.OnTakeDamage += m_audioCharacter.HurtSound;
+        m_lifeSystem.OnHeal += m_audioCharacter.HealSound;
     }
 
     // Update is called once per frame
-    void Update ()
+    private void Update ()
     {
+        if (m_lifeSystem.IsDead) 
+            return;
+        
         // Increase timer that controls attack combo
-        _timeSinceAttack += Time.deltaTime;
+        m_timeSinceAttack += Time.deltaTime;
 
         // Increase timer that checks roll duration
-        if(_rolling)
-            _rollCurrentTime += Time.deltaTime;
+        if(m_rolling)
+            m_rollCurrentTime += Time.deltaTime;
 
         // Disable rolling if timer extends duration
-        if(_rollCurrentTime > _rollDuration)
-            _rolling = false;
+        if(m_rollCurrentTime > m_rollDuration)
+            m_rolling = false;
         
         // -- Handle input and movement --
         Vector2 inputMove = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         // Swap direction of sprite depending on walk direction
-        if (inputMove.x > 0)
+        if (m_aiming.Direction.x > 0)
         {
-            _spriteRenderer.flipX = false;
-            _facingDirection = 1;
+            m_spriteRenderer.flipX = false;
+            m_facingDirection = 1;
         }
             
-        else if (inputMove.x < 0)
+        else if (m_aiming.Direction.x < 0)
         {
-            _spriteRenderer.flipX = true;
-            _facingDirection = -1;
+            m_spriteRenderer.flipX = true;
+            m_facingDirection = -1;
         }
 
         // Move
-        if (!_rolling)
+        if (!m_rolling && !m_lifeSystem.IsDead)
         {
-            _body2d.velocity = new Vector2(inputMove.x * m_speed, inputMove.y * m_speed);
+            m_body2d.velocity = new Vector2(inputMove.x * m_speed, inputMove.y * m_speed);
         }
 
-
-        // -- Handle Animations --
-
-        //Death
-        if (Input.GetKeyDown("e") && !_rolling)
-            Die();
-            
-        //Hurt
-        else if (Input.GetKeyDown("q") && !_rolling)
-            TakeDamage();
-
         //Attack
-        else if(Input.GetMouseButtonDown(0) && _timeSinceAttack > 0.25f && !_rolling)
+        if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling && !m_lifeSystem.IsDead)
+        {
+            m_audioCharacter.AttackSound();
             Attack();
+        }
 
         // Block
-        else if (Input.GetMouseButtonDown(1) && !_rolling)
+        else if (Input.GetMouseButtonDown(1) && !m_rolling && !m_lifeSystem.IsDead)
+        {
+            m_audioCharacter.SecondarySound();
             Block();
+        }
 
         else if (Input.GetMouseButtonUp(1))
-            _animator.SetBool("IdleBlock", false);
+        {
+            m_audioCharacter.SecondarySound();
+            m_animator.SetBool("IdleBlock", false);
+        }
 
         // Roll
-        else if (Input.GetKeyDown("left shift") && !_rolling)
+        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_lifeSystem.IsDead)
+        {
+            m_audioCharacter.RunSound();
             Roll();
+        }
 
         //Run
-        else if (Mathf.Abs(inputMove.x) > Mathf.Epsilon)
+        else if (Mathf.Abs(inputMove.x) > Mathf.Epsilon || Mathf.Abs(inputMove.y) > Mathf.Epsilon && !m_lifeSystem.IsDead)
         {
             // Reset timer
-            _delayToIdle = 0.05f;
-            _animator.SetInteger("AnimState", 1);
+            m_delayToIdle = 0.05f;
+            m_animator.SetInteger("AnimState", 1);
         }
 
         //Idle
-        else
+        else if (!m_lifeSystem.IsDead)
         {
             // Prevents flickering transitions to idle
-            _delayToIdle -= Time.deltaTime;
-                if(_delayToIdle < 0)
-                    _animator.SetInteger("AnimState", 0);
+            m_delayToIdle -= Time.deltaTime;
+            if (m_delayToIdle < 0)
+                m_animator.SetInteger("AnimState", 0);
         }
     }
 
     private void LateUpdate()
     {
-        _structPlayer.CurrentLife = _bodyModule.GetComponent<LifeSystem>().CurrentLife;
+        m_structPlayer.CurrentLife = m_lifeSystem.CurrentLife;
     }
 
     private void Die()
     {
-        _animator.SetBool("noBlood", m_noBlood);
-        _animator.SetTrigger("Death");
+        m_animator.SetBool("noBlood", m_noBlood);
+        m_animator.SetTrigger("Death");
     }
 
     public void Attack()
     {
-        _currentAttack++;
+        m_currentAttack++;
 
         // Loop back to one after third attack
-        if (_currentAttack > 3)
-            _currentAttack = 1;
+        if (m_currentAttack > 3)
+            m_currentAttack = 1;
 
         // Reset Attack combo if time since last attack is too large
-        if (_timeSinceAttack > 1.0f)
-            _currentAttack = 1;
+        if (m_timeSinceAttack > 1.0f)
+            m_currentAttack = 1;
 
         // Call one of three attack animations "Attack1", "Attack2", "Attack3"
-        _animator.SetTrigger("Attack" + _currentAttack);
-        float x = _aiming.Direction.x;
+        m_animator.SetTrigger("Attack" + m_currentAttack);
+        float x = m_aiming.Direction.x;
         if (x > 0)
         {
-            _spriteRenderer.flipX = false;
-            _facingDirection = 1;
+            m_spriteRenderer.flipX = false;
+            m_facingDirection = 1;
         }
         if (x < 0)
         {
-            _spriteRenderer.flipX = true;
-            _facingDirection = -1;
+            m_spriteRenderer.flipX = true;
+            m_facingDirection = -1;
         }
     
-        Vector3 atkPos = _actionModule.transform.position + _aiming.Direction;
+        Vector3 atkPos = m_actionModule.transform.position + m_aiming.Direction;
         atkPos.z = 0;
         Quaternion atkRot = Quaternion.Euler(0, 0, Mathf.Atan2(atkPos.y, atkPos.x) * Mathf.Rad2Deg);
-        _actionModule.GetComponent<PlayerAttack>().Attack(atkPos, atkRot);
+        m_actionModule.GetComponent<PlayerAttack>().Attack(atkPos, atkRot);
         
         // Reset timer
-        _timeSinceAttack = 0.0f;
+        m_timeSinceAttack = 0.0f;
     }
     
     private void TakeDamage()
     {
-        _animator.SetTrigger("Hurt");
+        m_animator.SetTrigger("Hurt");
     }
     
     public void Block()
     {
-        _animator.SetTrigger("Block");
-        _animator.SetBool("IdleBlock", true);
+        m_animator.SetTrigger("Block");
+        StartCoroutine(Blocking());
+        m_animator.SetBool("IdleBlock", true);
+    }
+    
+    private IEnumerator Blocking()
+    {
+        m_isBlocking = true;
+        yield return new WaitForSeconds(0.5f);
+        m_isBlocking = false;
+        yield break;
     }
 
     public void Roll()
     {
-        _rolling = true;
-        _animator.SetTrigger("Roll");
-        _body2d.velocity = new Vector2(_facingDirection * m_rollForce, _body2d.velocity.y);
+        m_rolling = true;
+        m_animator.SetTrigger("Roll");
+        m_lifeSystem.SetInvincible(m_rollDuration);
+        m_body2d.velocity = new Vector2(m_aiming.Direction.x * m_rollForce, m_aiming.Direction.y * m_rollForce);
     }
 }

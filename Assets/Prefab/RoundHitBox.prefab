@@ -81,5 +81,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 0
-  _lifeTime: 0.1
+  _lifeTime: 0.2
   _size: 1

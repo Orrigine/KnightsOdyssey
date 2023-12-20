@@ -10,7 +10,7 @@ public class EnemyPatrol : MonoBehaviour
     public bool Detected = false;
     private int Timer = 0;
     private bool _triggerPatrol = false;
-    private Coroutine Coroutine;
+    private Coroutine _patrol;
 
     NavMeshAgent _nav;
 
@@ -34,18 +34,18 @@ public class EnemyPatrol : MonoBehaviour
         // Vérifiez l'état de EnemyStateMachine
         if (_enemyStateMachine != null && _enemyStateMachine.currentState is EnemyPatrolState)
         {
-            if (!Detected && Coroutine == null)
+            if (!Detected && _patrol == null)
             {
                 // _enemyStateMachine
                 // _enemyStateMachine.ChangeState(_enemyStateMachine.patrolState);
-                Coroutine = StartCoroutine(Patrol());
+                _patrol = StartCoroutine(Patrol());
                 // Debug.LogWarning("Coroutine is null");
             }
         }
 
         if (Detected)
         {
-            StopCoroutine(Coroutine);
+            StopCoroutine(_patrol);
             _triggerPatrol = false;
         }
     }
@@ -68,6 +68,7 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            StopCoroutine(_patrol);
             Detected = true;
         }
     }
@@ -77,6 +78,7 @@ public class EnemyPatrol : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Detected = false;
+            _patrol = StartCoroutine(Patrol());
         }
     }
 }
