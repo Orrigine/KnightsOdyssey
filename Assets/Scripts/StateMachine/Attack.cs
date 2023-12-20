@@ -9,7 +9,7 @@ public class Attack : StateMachineBehaviour
     NavMeshAgent agent;
     GameObject playerPos;
     private float _timer = 0f;
-    [SerializeField] private float _cooldown = 0.5f;
+    [SerializeField] private float _cooldown;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -18,6 +18,7 @@ public class Attack : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         playerPos = GameObject.FindGameObjectWithTag("Player");
         agent.isStopped = true;
+        _cooldown = Random.Range(2, 5);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -25,7 +26,6 @@ public class Attack : StateMachineBehaviour
     {
         agent.SetDestination(playerPos.transform.position);
         animator.SetFloat("AttackRange", agent.remainingDistance);
-        Debug.Log(agent.remainingDistance);
         if(_timer < _cooldown)
         {
             _timer += Time.deltaTime;
@@ -34,9 +34,10 @@ public class Attack : StateMachineBehaviour
         {
             _timer = 0f;
             Vector3 pos = playerPos.transform.position - animator.gameObject.transform.position;
-            pos = pos.normalized * 2;
+            pos = pos.normalized * 1.5f;
             pos += animator.gameObject.transform.position;
             playerAttack.Attack(pos, animator.transform.rotation);
+            _cooldown = Random.Range(2, 5);
         }
     }
 

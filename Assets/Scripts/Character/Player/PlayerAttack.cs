@@ -18,7 +18,6 @@ public class PlayerAttack : MonoBehaviour
         _attackHitboxInstance.GetComponent<Transform>().parent = gameObject.GetComponent<Transform>();
         _attackHitboxInstance.GetComponent<Transform>().position = position;
         _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
-        _attackHitboxInstance.transform.SetParent(null);
     }
 
     public void HugeAttack(Vector3 position, Quaternion rotation)
@@ -27,7 +26,6 @@ public class PlayerAttack : MonoBehaviour
         _attackHitboxInstance.GetComponent<Transform>().parent = gameObject.GetComponent<Transform>();
         _attackHitboxInstance.GetComponent<Transform>().position = position;
         _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
-        _attackHitboxInstance.transform.SetParent(null);
     }
 
     public void Arrow(Vector3 position, Quaternion rotation)
