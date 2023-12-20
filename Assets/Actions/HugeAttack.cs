@@ -16,7 +16,10 @@ public class HugeAttack : ActionNode
 
     protected override State OnUpdate()
     {
-        context.gameObject.GetComponent<PlayerAttack>().HugeAttack(context.gameObject.GetComponent<Transform>().position, context.gameObject.GetComponent<Transform>().rotation);
+        Vector3 pos = blackboard.GetValue<Vector3>("Destination") - context.gameObject.transform.position;
+        pos = pos.normalized * 2;
+        pos += context.gameObject.transform.position;
+        context.gameObject.GetComponent<PlayerAttack>().HugeAttack(pos, context.gameObject.transform.rotation);
         return State.Success;
     }
 }

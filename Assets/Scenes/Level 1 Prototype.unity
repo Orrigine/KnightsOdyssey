@@ -9432,6 +9432,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 5712258085719296241, guid: dfd968c335580ec4893b29d3df529c7b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5813294948820981273, guid: dfd968c335580ec4893b29d3df529c7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.07
@@ -10130,6 +10134,10 @@ PrefabInstance:
     - target: {fileID: 3397683694061853268, guid: de65b5c56b4f40640a47442042f90312, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3397683694061853268, guid: de65b5c56b4f40640a47442042f90312, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4633610844601605519, guid: de65b5c56b4f40640a47442042f90312, type: 3}
       propertyPath: m_Layer
@@ -45183,11 +45191,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3006221365048476287, guid: 834e5ab5979746149a6b60a23fc7b96f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.11
+      value: -4.98
       objectReference: {fileID: 0}
     - target: {fileID: 3006221365048476287, guid: 834e5ab5979746149a6b60a23fc7b96f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.66
+      value: -1.49
       objectReference: {fileID: 0}
     - target: {fileID: 3006221365048476287, guid: 834e5ab5979746149a6b60a23fc7b96f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -45227,7 +45235,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6007878971643749558, guid: 834e5ab5979746149a6b60a23fc7b96f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601081740765999341, guid: 834e5ab5979746149a6b60a23fc7b96f, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45409,8 +45421,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00040000677, y: -0.00034999847, z: 0}
-    m_Extent: {x: 0.9975, y: 0.99765, z: 0}
+    m_Center: {x: -0.00034999847, y: -0.00020000339, z: 0}
+    m_Extent: {x: 0.99775, y: 0.9977, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
