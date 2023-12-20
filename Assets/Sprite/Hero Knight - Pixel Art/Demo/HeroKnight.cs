@@ -8,7 +8,7 @@ public class HeroKnight : MonoBehaviour {
     [FormerlySerializedAs("m_speed")] [SerializeField]
     private float      m_speed = 4.0f;
     [FormerlySerializedAs("m_rollForce")] [SerializeField]
-    private float      m_rollForce = 6.0f;
+    private float      m_rollForce = 16.0f;
     [FormerlySerializedAs("m_noBlood")] [SerializeField]
     private bool       m_noBlood = false;
     
@@ -93,13 +93,13 @@ public class HeroKnight : MonoBehaviour {
         Vector2 inputMove = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         // Swap direction of sprite depending on walk direction
-        if (inputMove.x > 0)
+        if (m_aiming.Direction.x > 0)
         {
             m_spriteRenderer.flipX = false;
             m_facingDirection = 1;
         }
             
-        else if (inputMove.x < 0)
+        else if (m_aiming.Direction.x < 0)
         {
             m_spriteRenderer.flipX = true;
             m_facingDirection = -1;
@@ -227,6 +227,6 @@ public class HeroKnight : MonoBehaviour {
         m_rolling = true;
         m_animator.SetTrigger("Roll");
         m_lifeSystem.SetInvincible(m_rollDuration);
-        m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
+        m_body2d.velocity = new Vector2(m_aiming.Direction.x * m_rollForce, m_aiming.Direction.y * m_rollForce);
     }
 }

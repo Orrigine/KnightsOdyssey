@@ -27,6 +27,7 @@ public class PlayerBodyHitbox : MonoBehaviour
             {
                 _lifeSystem.TakeDamage();
             }
+            CinemachineShakeScreen.Instance.ShakeCamera(5f, 0.1f);
         }
     }
     
