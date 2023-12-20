@@ -65,10 +65,11 @@ public class LifeSystem : MonoBehaviour
     
     public void TakeDamage()
     {
-        OnTakeDamage?.Invoke();
         if (!_isInvincible)
         {
+            OnTakeDamage?.Invoke();
             CurrentLife--;
+            SetInvincible(2.0f);
         }
     }
     

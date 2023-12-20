@@ -422,6 +422,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioModule
       objectReference: {fileID: 0}
+    - target: {fileID: 7453630587821477742, guid: 4f4b0fb98a3c22d43926792bb667007b, type: 3}
+      propertyPath: _ACSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 4aa45cd2529f8014d85a1e7af19143cd, type: 2}
     - target: {fileID: 8888864677415089250, guid: 4f4b0fb98a3c22d43926792bb667007b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
