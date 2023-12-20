@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72e29617f7c342b4296286e45e2db4be, type: 3}
-  m_Name: PlayerACSO
+  m_Name: BossACSO
   m_EditorClassIdentifier: 
-  _takeDamage: {fileID: 8300000, guid: 1f19b70507ded124e93c446bfaf708a6, type: 3}
+  _takeDamage: {fileID: 8300000, guid: ec3ff46fef1321848b837d3ae5fc8112, type: 3}
   _heal: {fileID: 8300000, guid: 8e483c3ca5f533a4eaa8147ff3844e6d, type: 3}
   _death: {fileID: 8300000, guid: 951a2a77e293290408110eaf9cd75e1f, type: 3}
-  _attack: {fileID: 8300000, guid: c163e48fab1e7cb4cbf83675ab7c5f30, type: 3}
-  _secondary: {fileID: 8300000, guid: 1d321da61b18ea34bb07d5285e4f3cd3, type: 3}
-  _run: {fileID: 8300000, guid: 78c150468bfd62841bb4eb06afa854a7, type: 3}
+  _attack: {fileID: 8300000, guid: c2b6ce07afbbcec4a89f778b864196d1, type: 3}
+  _secondary: {fileID: 0}
+  _run: {fileID: 0}

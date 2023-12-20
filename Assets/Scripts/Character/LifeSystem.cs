@@ -48,7 +48,7 @@ public class LifeSystem : MonoBehaviour
 
     private void Update()
     {
-        if (CurrentLife <= 0)
+        if (CurrentLife <= 0 && !IsDead)
         {
             OnDeath?.Invoke();
             IsDead = true;
@@ -65,10 +65,11 @@ public class LifeSystem : MonoBehaviour
     
     public void TakeDamage()
     {
-        OnTakeDamage?.Invoke();
         if (!_isInvincible)
         {
+            OnTakeDamage?.Invoke();
             CurrentLife--;
+            SetInvincible(2.0f);
         }
     }
     
