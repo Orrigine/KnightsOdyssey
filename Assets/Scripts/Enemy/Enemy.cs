@@ -29,7 +29,6 @@ public class Enemy : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
-
         if (_stateMachine.currentState is EnemyPatrolState)
         {
             bool facingRight = _nav.velocity.x >= 0;
@@ -37,11 +36,14 @@ public class Enemy : MonoBehaviour
 
 
             // if the enemy has reached his destination, go idle state
+
+
             if (_nav.remainingDistance <= _nav.stoppingDistance && !_nav.pathPending)
             {
                 _stateMachine.ChangeState(_stateMachine.enemyIdleState);
             }
 
+            // Switch to Attack
             if (_stateMachine.patrolState.Detected)
             {
                 _stateMachine.ChangeState(_stateMachine.enemyAttackState);

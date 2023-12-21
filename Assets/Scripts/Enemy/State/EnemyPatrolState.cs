@@ -22,12 +22,6 @@ public class EnemyPatrolState : EnemyState
     public override void Enter()
     {
         _animator.SetBool("isPatroling", true);
-
-    }
-
-    public override void Execute()
-    {
-
         if (!Detected && _patrol == null)
         {
             Debug.Log(this.gameObject.name + " is patrolling");
@@ -38,6 +32,12 @@ public class EnemyPatrolState : EnemyState
             StopCoroutine(_patrol);
 
         }
+    }
+
+    public override void Execute()
+    {
+
+
     }
 
     public override void Exit()

@@ -41,6 +41,18 @@ public class LancerBehaviour : StateMachineBehaviour
             rushTimer = 0;
         }
 
+        if (agent.path.corners.Length == 2 && enemyPatrol.Detected)
+        {
+            agent.isStopped = true;
+            animator.SetBool("ReadyToThrow", true);
+        }
+        else
+        {
+            agent.isStopped = false;
+            animator.SetBool("ReadyToThrow", false);
+        }
+
+
         rushTimer += Time.deltaTime;
     }
 

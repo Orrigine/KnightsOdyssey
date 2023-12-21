@@ -22,11 +22,8 @@ public class EnemyPatrol : MonoBehaviour
     {
         _nav = GetComponent<NavMeshAgent>();
 
-        // Obtenez le composant EnemyStateMachine
-
-        //_enemyStateMachine = GetComponentInParent<EnemyStateMachine>();
-
     }
+
 
     // Update is called once per frame
     public void Update()
@@ -44,7 +41,10 @@ public class EnemyPatrol : MonoBehaviour
 
         if (Detected)
         {
-            StopCoroutine(_patrol);
+            if (_patrol != null)
+            {
+                StopCoroutine(_patrol);
+            }
             _triggerPatrol = false;
         }
     }
@@ -67,7 +67,8 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            StopCoroutine(_patrol);
+            if (_patrol != null)
+            { StopCoroutine(_patrol); }
             Detected = true;
         }
     }
