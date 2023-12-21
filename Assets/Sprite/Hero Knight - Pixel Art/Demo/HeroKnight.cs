@@ -151,7 +151,7 @@ public class HeroKnight : MonoBehaviour {
             m_currentAttack = 1;
 
         // Reset Attack combo if time since last attack is too large
-        if (m_timeSinceAttack > 2.0f)
+        if (m_timeSinceAttack > 1.0f)
             m_currentAttack = 1;
 
         // Call one of three attack animations "Attack1", "Attack2", "Attack3"
@@ -204,7 +204,7 @@ public class HeroKnight : MonoBehaviour {
         m_audioCharacter.RunSound();
         m_animator.SetTrigger("Roll");
         m_lifeSystem.SetInvincible(m_rollDuration);
-        m_body2d.velocity = new Vector2(m_aiming.Direction.x * m_rollForce, m_aiming.Direction.y * m_rollForce);
+        m_body2d.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * m_rollForce, Input.GetAxisRaw("Vertical") * m_rollForce);
 
         yield return new WaitForSeconds(m_rollDuration);
         m_rolling = false;

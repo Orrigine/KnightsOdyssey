@@ -69,7 +69,7 @@ public class LifeSystem : MonoBehaviour
         {
             OnTakeDamage?.Invoke();
             CurrentLife--;
-            SetInvincible(2.0f);
+            SetInvincible(0.75f);
         }
     }
     
