@@ -186,10 +186,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c84c1500eaeee459cea22319c885f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 0
-  currentLife: 0
-  isDead: 0
-  isInvincible: 0
+  _maxLife: 0
+  _currentLife: 0
+  _isDead: 0
+  _isInvincible: 0
+  _canAttacking: 1
+  _canRoll: 1
+  _canShield: 1
 --- !u!1 &4633610844601605519
 GameObject:
   m_ObjectHideFlags: 0

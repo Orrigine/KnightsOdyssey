@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HitBox : MonoBehaviour
@@ -28,9 +25,5 @@ public class HitBox : MonoBehaviour
         _lifeTime -= Time.deltaTime;
         if (_lifeTime <= 0)
             Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
     }
 }

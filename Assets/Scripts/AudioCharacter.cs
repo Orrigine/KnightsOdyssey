@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioCharacter : MonoBehaviour
@@ -11,6 +9,7 @@ public class AudioCharacter : MonoBehaviour
     {
         _audioSource = gameObject.AddComponent<AudioSource>();
         _audioSource.playOnAwake = false;
+        _audioSource.volume = 0.1f;
         _audioSource.loop = false;
     }
     

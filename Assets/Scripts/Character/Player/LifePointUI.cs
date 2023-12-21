@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LifePointUI : MonoBehaviour
@@ -10,7 +8,6 @@ public class LifePointUI : MonoBehaviour
     
     void Start()
     {
-        _structPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<StructPlayer>();
         _currentLifePoints = _structPlayer.CurrentLife;
     }
 
