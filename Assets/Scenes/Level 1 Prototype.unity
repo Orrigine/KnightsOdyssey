@@ -436,13 +436,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 5712258085719296241, guid: dfd968c335580ec4893b29d3df529c7b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5813294948820981273, guid: dfd968c335580ec4893b29d3df529c7b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.01
+      value: 4.81
       objectReference: {fileID: 0}
     - target: {fileID: 5813294948820981273, guid: dfd968c335580ec4893b29d3df529c7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.35
+      value: 9.45
       objectReference: {fileID: 0}
     - target: {fileID: 5813294948820981273, guid: dfd968c335580ec4893b29d3df529c7b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -476,10 +480,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9150759607148196033, guid: dfd968c335580ec4893b29d3df529c7b, type: 3}
-      propertyPath: _wave
-      value: 
-      objectReference: {fileID: 2614687035634044117, guid: 751b497c43adb0a428c273751e6b4b48, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9403,6 +9403,18 @@ PrefabInstance:
     - target: {fileID: 2197425494050837393, guid: b3524845a866ba34f965a6a6d5bb997f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482145198141328364, guid: b3524845a866ba34f965a6a6d5bb997f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.5366786
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482145198141328364, guid: b3524845a866ba34f965a6a6d5bb997f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.0103333
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482145198141328364, guid: b3524845a866ba34f965a6a6d5bb997f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.974253
       objectReference: {fileID: 0}
     - target: {fileID: 5734984297697011079, guid: b3524845a866ba34f965a6a6d5bb997f, type: 3}
       propertyPath: m_Name
@@ -44896,8 +44908,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.000050008297, y: -0.00025001168, z: 0}
-    m_Extent: {x: 0.99755, y: 0.99794996, z: 0}
+    m_Center: {x: 0.000050008297, y: -0.00049999356, z: 0}
+    m_Extent: {x: 0.99745, y: 0.99759996, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
