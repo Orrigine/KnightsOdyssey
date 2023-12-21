@@ -33,7 +33,7 @@ public class EnemyPatrol : MonoBehaviour
         {
             if (!Detected && _patrol == null)
             {
-                Debug.Log(this.gameObject.name + " is patrolling");
+                // Debug.Log(this.gameObject.name + " is patrolling");
                 _patrol = StartCoroutine(Patrol());
 
             }
@@ -67,8 +67,11 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            Debug.Log(this.gameObject.name + " : Player detected");
             if (_patrol != null)
-            { StopCoroutine(_patrol); }
+            {
+                StopCoroutine(_patrol);
+            }
             Detected = true;
         }
     }

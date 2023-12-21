@@ -24,7 +24,7 @@ public class ThrowingSpear : StateMachineBehaviour
         _agent.SetDestination(_player.transform.position);
         _agent.isStopped = true;
         Vector2 direction = _player.transform.position - animator.transform.position;
-        animator.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, direction);
 
         if (_timer < _cooldown)
         {
@@ -38,7 +38,7 @@ public class ThrowingSpear : StateMachineBehaviour
         else
         {
             _timer = 0f;
-            playerAttack.Spear(animator.transform.position, animator.transform.rotation);
+            playerAttack.Spear(animator.transform.position, rotation);
         }
     }
 }

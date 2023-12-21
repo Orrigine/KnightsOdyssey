@@ -35,9 +35,6 @@ public class Enemy : MonoBehaviour
             enemyGO.transform.localScale = new Vector3(facingRight ? -1.0F : 1.0F, 1.0F, 1.0F);
 
 
-            // if the enemy has reached his destination, go idle state
-
-
             if (_nav.remainingDistance <= _nav.stoppingDistance && !_nav.pathPending)
             {
                 _stateMachine.ChangeState(_stateMachine.enemyIdleState);

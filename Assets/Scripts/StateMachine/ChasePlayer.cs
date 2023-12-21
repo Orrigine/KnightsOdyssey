@@ -15,6 +15,7 @@ public class ChasePlayer : StateMachineBehaviour
         enemyPatrol = animator.GetComponent<EnemyPatrol>();
         playerPos = GameObject.FindGameObjectWithTag("Player");
         agent.isStopped = false;
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 5161338774978512052}
   - component: {fileID: 8834307161587075259}
   - component: {fileID: 4801429568901466717}
+  - component: {fileID: -6828253016925684191}
   m_Layer: 0
   m_Name: EnemyKnight
   m_TagString: Untagged
@@ -343,8 +344,8 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6007878971643749558}
-  m_BodyType: 0
-  m_Simulated: 0
+  m_BodyType: 1
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -391,6 +392,24 @@ MonoBehaviour:
   _stateMachine: {fileID: 8607175471793105947}
   enemyGO: {fileID: 6007878971643749558}
   animator: {fileID: 2011233469141559852}
+--- !u!114 &-6828253016925684191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6007878971643749558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f28ed30cc2ea7b40a04dc18b58bfa9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackHitbox: {fileID: 642999092558500465, guid: ca6696658e2ea4342809114e6b31b7ca, type: 3}
+  _hugeAttack: {fileID: 0}
+  _arrow: {fileID: 0}
+  _fire: {fileID: 0}
+  _wave: {fileID: 0}
+  _spear: {fileID: 0}
 --- !u!1 &6016386002400553838
 GameObject:
   m_ObjectHideFlags: 0

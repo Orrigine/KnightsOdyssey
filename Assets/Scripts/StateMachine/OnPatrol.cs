@@ -11,19 +11,28 @@ public class OnPatrol : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        patrol = animator.GetComponent<EnemyPatrol>();   
+        patrol = animator.GetComponent<EnemyPatrol>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(patrol.Detected)
+        Debug.Log(patrol.Detected);
+        if (patrol.Detected)
         {
             animator.SetBool("OnChase", true);
         }
         else
         {
             animator.SetBool("OnChase", false);
+        }
+    }
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            patrol.Detected = true;
         }
     }
 
