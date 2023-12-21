@@ -28,7 +28,7 @@ public class ShootingArrow : StateMachineBehaviour
         _agent.SetDestination(_player.transform.position);
         _agent.isStopped = true;
         Vector2 direction = _player.transform.position - animator.transform.position;
-        animator.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, direction);
 
         if (_timer < _cooldown)
         {
@@ -42,7 +42,7 @@ public class ShootingArrow : StateMachineBehaviour
         else
         {
             _timer = 0f;
-            playerAttack.Arrow(animator.transform.position, animator.transform.rotation);
+            playerAttack.Arrow(animator.transform.position, rotation);
         }
     }
 

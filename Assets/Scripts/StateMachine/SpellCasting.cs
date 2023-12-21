@@ -32,6 +32,8 @@ public class SpellCasting : StateMachineBehaviour
         }
         else if (!enemyPatrol.Detected)
         {
+            _timer = 0f;
+            _timer2 = 0f;
             animator.SetBool("ReadyToShoot", false);
             animator.SetBool("OnChase", false);
         }

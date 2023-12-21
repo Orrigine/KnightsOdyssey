@@ -38,7 +38,7 @@ public class HeroKnight : MonoBehaviour {
     private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
     private readonly float      m_rollDuration = 8.0f / 14.0f;
-    private float               m_rollCooldown = 4.0f;
+    private float               m_rollCooldown = 2;
 
     public bool IsBlocking
     {
