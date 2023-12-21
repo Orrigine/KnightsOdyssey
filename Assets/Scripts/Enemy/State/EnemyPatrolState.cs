@@ -28,16 +28,16 @@ public class EnemyPatrolState : EnemyState
     public override void Execute()
     {
 
-        // if (!Detected && _patrol == null)
-        // {
-        //     Debug.Log(this.gameObject.name + " is patrolling");
-        //     _patrol = StartCoroutine(Patrol());
-        // }
-        // else if (Detected)
-        // {
-        //     StopCoroutine(_patrol);
+        if (!Detected && _patrol == null)
+        {
+            Debug.Log(this.gameObject.name + " is patrolling");
+            _patrol = StartCoroutine(Patrol());
+        }
+        else if (Detected)
+        {
+            StopCoroutine(_patrol);
 
-        // }
+        }
     }
 
     public override void Exit()

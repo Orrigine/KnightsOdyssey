@@ -61,7 +61,7 @@ public class HeroKnight : MonoBehaviour {
         m_lifeSystem = m_bodyModule.GetComponent<LifeSystem>();
         m_spriteRenderer = m_renderModule.GetComponent<SpriteRenderer>();
         m_animator = m_renderModule.GetComponent<Animator>();
-        m_body2d = gameObject.transform.parent.GetComponent<Rigidbody2D>();
+        m_body2d = transform.parent.GetComponent<Rigidbody2D>();
         m_audioCharacter = m_audioModule.GetComponent<AudioCharacter>();
         m_animator.SetBool("Grounded", true);
         
@@ -74,6 +74,8 @@ public class HeroKnight : MonoBehaviour {
     // Update is called once per frame
     private void Update ()
     {
+        if (m_lifeSystem.IsDead) return;
+        
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
@@ -162,6 +164,8 @@ public class HeroKnight : MonoBehaviour {
         m_audioCharacter.DeathSound();
         m_animator.SetBool("noBlood", m_noBlood);
         m_animator.SetTrigger("Death");
+        m_aiming.enabled = false;
+        m_bodyModule.GetComponent<Collider2D>().enabled = false;
     }
 
     public void Attack()

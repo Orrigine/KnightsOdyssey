@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] GameObject _arrow;
     [SerializeField] GameObject _fire;
     [SerializeField] GameObject _wave;
+    [SerializeField] GameObject _spear;
 
     private GameObject _attackHitboxInstance;
 
@@ -42,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
     public void FirePit(Vector3 position, Quaternion rotation, bool precast)
     {
         _attackHitboxInstance = Instantiate(_fire);
-        if(precast)
+        if (precast)
         {
             _attackHitboxInstance.GetComponent<CircleCollider2D>().enabled = false;
             _attackHitboxInstance.GetComponent<HitBox>()._lifeTime = 1.9f;
@@ -66,6 +67,16 @@ public class PlayerAttack : MonoBehaviour
         _attackHitboxInstance.GetComponent<Transform>().parent = gameObject.GetComponent<Transform>();
         _attackHitboxInstance.GetComponent<Transform>().position = position;
         _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
+        _attackHitboxInstance.transform.SetParent(null);
+    }
+
+    public void Spear(Vector3 position, Quaternion rotation)
+    {
+        _attackHitboxInstance = Instantiate(_spear);
+        _attackHitboxInstance.GetComponent<Transform>().parent = gameObject.GetComponent<Transform>();
+        _attackHitboxInstance.GetComponent<Transform>().position = position;
+        _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
+        _attackHitboxInstance.GetComponent<Rigidbody2D>().velocity = transform.up * 30;
         _attackHitboxInstance.transform.SetParent(null);
     }
 }
