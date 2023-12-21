@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class NodeSetValue : Node
+public class NodeSetValue : NodeAction
 {
 	// The key/value pair from the blackboard instance.
 	[SerializeReference]
@@ -13,6 +13,13 @@ public class NodeSetValue : Node
 	// The update value.
 	[SerializeReference]
 	public BlackboardKeyValueBase setValue;
+
+
+	public NodeSetValue()
+	{
+		name = "Set Value";
+	}
+
 
 	protected override void OnStart()
 	{

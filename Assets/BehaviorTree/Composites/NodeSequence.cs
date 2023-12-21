@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeSequence : Node
+public class NodeSequence : NodeComposite
 {
 	private int _current;
 
+
+	public NodeSequence()
+	{
+		name = "Sequence";
+	}
 
 	protected override void OnStart()
 	{

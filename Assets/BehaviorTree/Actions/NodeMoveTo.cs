@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeMoveTo : Node
+public class NodeMoveTo : NodeAction
 {
+	public NodeMoveTo()
+	{
+		name = "Move To";
+	}
+
+
 	protected override void OnStart()
 	{
 	}

@@ -18,7 +18,7 @@ public class BehaviorTree : ScriptableObject
 
     public BehaviorTree()
     {
-        rootNode = new NodeRoot();
+		rootNode = new NodeRoot();
         nodes.Add(rootNode);
     }
 
@@ -30,5 +30,10 @@ public class BehaviorTree : ScriptableObject
 	public BehaviorTree Clone()
 	{
 		return Instantiate(this);
+	}
+
+	public void AddNode(Node node)
+	{
+		nodes.Add(node);
 	}
 }
