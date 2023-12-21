@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Serialization;
 
@@ -32,26 +31,20 @@ public class HeroKnight : MonoBehaviour {
     private Rigidbody2D         m_body2d;
     private bool                m_rolling = false;
     private bool                m_isBlocking = false;
+    private float               m_blockCooldown = 1.0f;
     private bool                m_isDead = false;
-    private int                 m_facingDirection = 1;
+    private bool                m_isAttacking = false;
     private int                 m_currentAttack = 0;
     private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
     private readonly float      m_rollDuration = 8.0f / 14.0f;
-    private float               m_rollCurrentTime;
+    private float               m_rollCooldown = 2;
 
     public bool IsBlocking
     {
         get { return m_isBlocking; }
         set { m_isBlocking = value; }
     }
-    
-    public int FacingDirection
-    {
-        get { return m_facingDirection; }
-        set { m_facingDirection = value; }
-    }
-
 
     // Use this for initialization
     private void Start ()
@@ -78,62 +71,41 @@ public class HeroKnight : MonoBehaviour {
         
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
-
-        // Increase timer that checks roll duration
-        if(m_rolling)
-            m_rollCurrentTime += Time.deltaTime;
-
-        // Disable rolling if timer extends duration
-        if(m_rollCurrentTime > m_rollDuration)
-            m_rolling = false;
         
         // -- Handle input and movement --
         Vector2 inputMove = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         // Swap direction of sprite depending on walk direction
         if (m_aiming.Direction.x > 0)
-        {
             m_spriteRenderer.flipX = false;
-            m_facingDirection = 1;
-        }
             
         else if (m_aiming.Direction.x < 0)
-        {
             m_spriteRenderer.flipX = true;
-            m_facingDirection = -1;
-        }
 
         // Move
-        if (!m_rolling && !m_lifeSystem.IsDead)
+        if (!m_rolling)
         {
             m_body2d.velocity = new Vector2(inputMove.x * m_speed, inputMove.y * m_speed);
         }
 
         //Attack
-        if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        if (Input.GetMouseButtonDown(0) && !m_rolling && !m_isAttacking && m_structPlayer.CanAttacking)
         {
             m_audioCharacter.AttackSound();
-            Attack();
+            StartCoroutine(Attack());
         }
 
         // Block
-        else if (Input.GetMouseButtonDown(1) && !m_rolling)
+        else if (Input.GetMouseButtonDown(1) && !m_rolling && m_structPlayer.CanShield)
         {
             m_audioCharacter.SecondarySound();
             Block();
         }
 
-        else if (Input.GetMouseButtonUp(1))
-        {
-            m_audioCharacter.SecondarySound();
-            m_animator.SetBool("IdleBlock", false);
-        }
-
         // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling)
+        else if (Input.GetKeyDown("left shift") && m_structPlayer.CanRoll && !m_rolling)
         {
-            m_audioCharacter.RunSound();
-            Roll();
+            StartCoroutine(Roll());
         }
 
         //Run
@@ -168,8 +140,10 @@ public class HeroKnight : MonoBehaviour {
         m_bodyModule.GetComponent<Collider2D>().enabled = false;
     }
 
-    public void Attack()
+    public IEnumerator Attack()
     {
+        m_isAttacking = true;
+        
         m_currentAttack++;
 
         // Loop back to one after third attack
@@ -182,25 +156,23 @@ public class HeroKnight : MonoBehaviour {
 
         // Call one of three attack animations "Attack1", "Attack2", "Attack3"
         m_animator.SetTrigger("Attack" + m_currentAttack);
-        float x = m_aiming.Direction.x;
-        if (x > 0)
-        {
-            m_spriteRenderer.flipX = false;
-            m_facingDirection = 1;
-        }
-        if (x < 0)
-        {
-            m_spriteRenderer.flipX = true;
-            m_facingDirection = -1;
-        }
     
         Vector3 atkPos = m_actionModule.transform.position + m_aiming.Direction;
         atkPos.z = 0;
         Quaternion atkRot = Quaternion.Euler(0, 0, Mathf.Atan2(atkPos.y, atkPos.x) * Mathf.Rad2Deg);
         m_actionModule.GetComponent<PlayerAttack>().Attack(atkPos, atkRot);
         
-        // Reset timer
+        yield return new WaitForSeconds(0.25f);
+        m_isAttacking = false;
+        
+        if (m_currentAttack == 3)
+        {
+            m_structPlayer.CanAttacking = false;
+            yield return new WaitForSeconds(0.75f); // Wait 0.5 to prevent spamming combo
+            m_structPlayer.CanAttacking = true;
+        }
         m_timeSinceAttack = 0.0f;
+        yield break;
     }
     
     private void TakeDamage()
@@ -210,24 +182,34 @@ public class HeroKnight : MonoBehaviour {
     
     public void Block()
     {
-        m_animator.SetTrigger("Block");
         StartCoroutine(Blocking());
-        m_animator.SetBool("IdleBlock", true);
     }
     
     private IEnumerator Blocking()
     {
+        m_animator.SetTrigger("Block");
         m_isBlocking = true;
+        m_structPlayer.CanShield = false;
         yield return new WaitForSeconds(0.5f);
         m_isBlocking = false;
+        yield return new WaitForSeconds(m_blockCooldown);
+        m_structPlayer.CanShield = true;
         yield break;
     }
 
-    public void Roll()
+    public IEnumerator Roll()
     {
         m_rolling = true;
+        m_structPlayer.CanRoll = false;
+        m_audioCharacter.RunSound();
         m_animator.SetTrigger("Roll");
         m_lifeSystem.SetInvincible(m_rollDuration);
-        m_body2d.velocity = new Vector2(m_aiming.Direction.x * m_rollForce, m_aiming.Direction.y * m_rollForce);
+        m_body2d.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * m_rollForce, Input.GetAxisRaw("Vertical") * m_rollForce);
+
+        yield return new WaitForSeconds(m_rollDuration);
+        m_rolling = false;
+        yield return new WaitForSeconds(m_rollCooldown);
+        m_structPlayer.CanRoll = true;
+        yield break;
     }
 }

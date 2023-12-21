@@ -13,7 +13,7 @@ public class SpellCasting : StateMachineBehaviour
     [SerializeField] private float _cooldown = 0.5f;
     EnemyPatrol enemyPatrol;
     GameObject _player;
-    private bool _casting;
+    private bool _casting = false;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -32,6 +32,8 @@ public class SpellCasting : StateMachineBehaviour
         }
         else if (!enemyPatrol.Detected)
         {
+            _timer = 0f;
+            _timer2 = 0f;
             animator.SetBool("ReadyToShoot", false);
             animator.SetBool("OnChase", false);
         }

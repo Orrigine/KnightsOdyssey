@@ -59,4 +59,30 @@ public class EnemyPatrolState : EnemyState
             yield return new WaitForSeconds(5f);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            StopCoroutine(_patrol);
+            Detected = true;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Detected = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Detected = false;
+            _patrol = StartCoroutine(Patrol());
+        }
+    }
 }
