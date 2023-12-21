@@ -26,6 +26,7 @@ public class ShootingArrow : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetInteger("Health" , animator.GetComponentInChildren<LifeSystem>().CurrentLife);
+
         _agent.SetDestination(_player.transform.position);
         _agent.isStopped = true;
         Vector2 direction = _player.transform.position - animator.transform.position;
