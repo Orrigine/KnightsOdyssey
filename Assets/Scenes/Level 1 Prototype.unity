@@ -1600,6 +1600,17 @@ Transform:
   - {fileID: 1645764831}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &769370607 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5011087859848281723, guid: 51a98723b140b51439f32e93dc8be413, type: 3}
+  m_PrefabInstance: {fileID: 2068936996}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66c3d7b82631ca4a88779a8abf65332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &773546068
 GameObject:
   m_ObjectHideFlags: 0
@@ -10429,6 +10440,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3524845a866ba34f965a6a6d5bb997f, type: 3}
+--- !u!114 &1397339538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5015766442999018683, guid: 51a98723b140b51439f32e93dc8be413, type: 3}
+  m_PrefabInstance: {fileID: 2068936996}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6a96c9be272eb4cb644272688b1ab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1443718736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11105,6 +11127,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6075975974975622417, guid: 78e9efbdf9b33994da8dfbe530f65e5e, type: 3}
   m_PrefabInstance: {fileID: 1608948909}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1627423806 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3955093019455504880, guid: 51a98723b140b51439f32e93dc8be413, type: 3}
+  m_PrefabInstance: {fileID: 2068936996}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca911c898a516f844b9a461c14b04813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1641528824
 GameObject:
   m_ObjectHideFlags: 0
@@ -46631,8 +46664,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00014999509, y: -0.00025001168, z: 0}
-    m_Extent: {x: 0.99755, y: 0.99805, z: 0}
+    m_Center: {x: 0, y: 0.000050008297, z: 0}
+    m_Extent: {x: 0.9975, y: 0.99725, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -46807,15 +46840,15 @@ PrefabInstance:
     - target: {fileID: 5063775917646452364, guid: 51a98723b140b51439f32e93dc8be413, type: 3}
       propertyPath: patrolState
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 769370607}
     - target: {fileID: 5063775917646452364, guid: 51a98723b140b51439f32e93dc8be413, type: 3}
       propertyPath: enemyIdleState
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1627423806}
     - target: {fileID: 5063775917646452364, guid: 51a98723b140b51439f32e93dc8be413, type: 3}
       propertyPath: enemyAttackState
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1397339538}
     - target: {fileID: 5063775917646452364, guid: 51a98723b140b51439f32e93dc8be413, type: 3}
       propertyPath: _states.Array.size
       value: 4
