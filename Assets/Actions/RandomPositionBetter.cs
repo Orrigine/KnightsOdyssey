@@ -33,8 +33,6 @@ namespace TheKiwiCoder
             pos.y = Random.Range(min.y, max.y);
             Vector3 pos2 = context.transform.position + pos;
             result.Value = pos2;
-
-
             return State.Success;
         }
     }
