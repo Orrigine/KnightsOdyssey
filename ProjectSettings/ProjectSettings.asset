@@ -686,11 +686,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: KnightsOdyssey
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 0071d63d0453db01
   metroApplicationDescription: KnightsOdyssey
   wsaImages: {}
   metroTileShortName: 

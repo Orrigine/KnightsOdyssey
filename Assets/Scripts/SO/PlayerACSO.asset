@@ -15,6 +15,6 @@ MonoBehaviour:
   _takeDamage: {fileID: 8300000, guid: 1f19b70507ded124e93c446bfaf708a6, type: 3}
   _heal: {fileID: 8300000, guid: 8e483c3ca5f533a4eaa8147ff3844e6d, type: 3}
   _death: {fileID: 8300000, guid: 951a2a77e293290408110eaf9cd75e1f, type: 3}
-  _attack: {fileID: 8300000, guid: c163e48fab1e7cb4cbf83675ab7c5f30, type: 3}
+  _attack: {fileID: 8300000, guid: eec8803d638e9054db468100b5fdc5a6, type: 3}
   _secondary: {fileID: 8300000, guid: 1d321da61b18ea34bb07d5285e4f3cd3, type: 3}
   _run: {fileID: 8300000, guid: 78c150468bfd62841bb4eb06afa854a7, type: 3}

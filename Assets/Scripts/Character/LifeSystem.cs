@@ -48,11 +48,9 @@ public class LifeSystem : MonoBehaviour
 
     private void Update()
     {
-        if (CurrentLife <= 0 && !IsDead)
-        {
-            OnDeath?.Invoke();
-            IsDead = true;
-        }
+        if (CurrentLife > 0 || IsDead) return;
+        OnDeath?.Invoke();
+        IsDead = true;
     }
     
     private void Heal(int amount)
