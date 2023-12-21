@@ -220,6 +220,7 @@ MonoBehaviour:
   _hugeAttack: {fileID: 2441528132480220528, guid: 69658eb8833ac6e4c8f8c93cd717d3af, type: 3}
   _arrow: {fileID: 0}
   _fire: {fileID: 0}
+  _wave: {fileID: 2614687035634044117, guid: 751b497c43adb0a428c273751e6b4b48, type: 3}
 --- !u!195 &1482355000957789744
 NavMeshAgent:
   m_ObjectHideFlags: 0
