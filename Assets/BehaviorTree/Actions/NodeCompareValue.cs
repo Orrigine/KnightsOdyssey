@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class NodeCompareValue : Node
+public class NodeCompareValue : NodeAction
 {
 	// The key/value pair from the blackboard instance.
 	[SerializeReference]
@@ -13,6 +13,13 @@ public class NodeCompareValue : Node
 	// The value to be matched.
 	[SerializeReference]
 	public BlackboardKeyValueBase compareValue;
+
+
+	public NodeCompareValue()
+	{
+		name = "Compare Value";
+	}
+
 
 	protected override void OnStart()
 	{

@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class NodeRepeat : Node
+public class NodeRepeat : NodeDecorator
 {
 	public bool restartOnSuccess = true;
 	public bool restartOnFailure = false;
 	public int maxRepeats = 0;
 
 	int iterationCount = 0;
+
+
+	public NodeRepeat()
+	{
+		name = "Repeat";
+	}
 
 
 	protected override void OnStart()

@@ -21,9 +21,10 @@ MonoBehaviour:
   - rid: 2630055210235199496
   treeState: 0
   blackboard:
-    keys: []
-  viewPosition: {x: 164, y: 32, z: 0}
-  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
+    keys:
+    - rid: 2630055232888897538
+  viewPosition: {x: 138, y: 193, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
   references:
     version: 2
     RefIds:
@@ -64,6 +65,13 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         duration: 1
+    - rid: 2630055232888897538
+      type: {class: Vector2IntKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: cc
+        typeName: UnityEngine.Vector2Int, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        value: {x: 0, y: 0}
     - rid: 4658662911998689280
       type: {class: RootNode, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
