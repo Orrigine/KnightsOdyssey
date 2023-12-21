@@ -74,7 +74,7 @@ public class PlayerAttack : MonoBehaviour
         _attackHitboxInstance.GetComponent<Transform>().parent = gameObject.GetComponent<Transform>();
         _attackHitboxInstance.GetComponent<Transform>().position = position;
         _attackHitboxInstance.GetComponent<Transform>().rotation = rotation;
-        _attackHitboxInstance.GetComponent<Rigidbody2D>().velocity = _attackHitbox.transform.up * 30;
+        _attackHitboxInstance.GetComponent<Rigidbody2D>().velocity = _attackHitboxInstance.transform.up * 30;
         _attackHitboxInstance.transform.SetParent(null);
     }
 }

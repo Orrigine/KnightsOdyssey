@@ -24,6 +24,7 @@ public class Attack : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.SetInteger("Health", animator.GetComponentInChildren<LifeSystem>().CurrentLife);
         agent.SetDestination(playerPos.transform.position);
         animator.SetFloat("AttackRange", agent.remainingDistance);
         if(_timer < _cooldown)
