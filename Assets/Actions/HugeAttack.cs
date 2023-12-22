@@ -19,7 +19,8 @@ public class HugeAttack : ActionNode
         Vector3 pos = blackboard.GetValue<Vector3>("Destination") - context.gameObject.transform.position;
         pos = pos.normalized * 2;
         pos += context.gameObject.transform.position;
-        context.gameObject.GetComponent<PlayerAttack>().HugeAttack(pos, context.gameObject.transform.rotation);
+        Vector3 direction = blackboard.GetValue<Vector3>("Destination") - context.transform.position;
+        context.gameObject.GetComponent<PlayerAttack>().HugeAttack(pos, Quaternion.FromToRotation(Vector3.left, direction));
         return State.Success;
     }
 }

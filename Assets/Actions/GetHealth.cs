@@ -12,7 +12,7 @@ public class GetHealth : ActionNode
 
     protected override void OnStart()
     {
-        lifeSystem = context.gameObject.GetComponent<LifeSystem>();
+        lifeSystem = context.gameObject.GetComponentInChildren<LifeSystem>();
         Health = lifeSystem.CurrentLife;
         if (Health == lifeSystem.MaxLife)
         {

@@ -70,8 +70,9 @@ MonoBehaviour:
     - rid: 8931511426302345222
     - rid: 8931511426302345224
     - rid: 8931511534661926927
-  viewPosition: {x: 663, y: 692, z: 0}
-  viewScale: {x: 0.32690176, y: 0.32690176, z: 1}
+    - rid: 8931511579656847360
+  viewPosition: {x: 282, y: 413, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
   references:
     version: 2
     RefIds:
@@ -117,7 +118,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 6249033f-40d4-42c8-95ad-0190e18c9998
-        position: {x: -525, y: -1065}
+        position: {x: -525, y: -1080}
         blackboard:
           keys: []
         description: 
@@ -237,7 +238,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: c68ace22cce64764eb7d25a925e9063e
-        position: {x: -525, y: -960}
+        position: {x: -525, y: -975}
         blackboard:
           keys: []
         description: 
@@ -802,9 +803,9 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         children:
-        - rid: 8931511534661926928
         - rid: 8931511534661926920
         - rid: 8931511534661926923
+        - rid: 8931511534661926928
     - rid: 8931511534661926927
       type: {class: IntKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -817,9 +818,15 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 3c40c4ba30b4b6d4685640d31fd37131
-        position: {x: 1035, y: 300}
+        position: {x: 1545, y: 300}
         blackboard:
           keys: []
         description: 
         drawGizmos: 0
         duration: 0.5
+    - rid: 8931511579656847360
+      type: {class: BooleanKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: Attack
+        typeName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 0
