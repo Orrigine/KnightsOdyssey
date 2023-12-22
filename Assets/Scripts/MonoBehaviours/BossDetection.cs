@@ -7,6 +7,7 @@ public class BossDetection : MonoBehaviour
 {
     public BehaviourTreeInstance behaviourTreeInstance;
     private GameObject playerPos;
+    public bool Attack = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,10 @@ public class BossDetection : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (behaviourTreeInstance != null)
+        {
+            Attack = behaviourTreeInstance.GetBlackboardValue<bool>("Attack");
+        }
         transform.rotation = Quaternion.identity;
     }
 
