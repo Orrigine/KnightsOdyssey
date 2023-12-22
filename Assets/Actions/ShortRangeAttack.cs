@@ -15,6 +15,7 @@ public class ShortRangeAttack : ActionNode
     protected override State OnUpdate() {
         if(blackboard.GetValue<float>("Cooldown") <= 0)
         {
+            blackboard.SetValue<bool>("Attack", true);
             blackboard.SetValue<float>("Cooldown", blackboard.GetValue<float>("CoolDownValue"));
             Vector3 pos = blackboard.GetValue<Vector3>("Destination") - context.gameObject.transform.position;
             pos = pos.normalized * 2;

@@ -7,9 +7,10 @@ using TheKiwiCoder;
 public class ShockWave : ActionNode
 {
     private int _iteration = 1;
+    private Vector3 pos;
     protected override void OnStart()
     {
-        Vector3 pos = blackboard.GetValue<Vector3>("Destination") - context.gameObject.transform.position;
+        pos = blackboard.GetValue<Vector3>("Destination") - context.gameObject.transform.position;
         pos = pos.normalized * _iteration * 2;
         pos += context.gameObject.transform.position;
         Vector3 direction = blackboard.GetValue<Vector3>("Destination") - context.transform.position;
@@ -22,11 +23,9 @@ public class ShockWave : ActionNode
     {
     }
 
-    protected override State OnUpdate()
-    {
-        if (_iteration == 4)
-        {
-            _iteration = 0;
+    protected override State OnUpdate() {
+        if (_iteration == 4) {
+            _iteration = 1;
             blackboard.SetValue("Iteration", _iteration);
             return State.Failure;
         }

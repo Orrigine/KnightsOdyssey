@@ -10,8 +10,7 @@ public class Healing : ActionNode
     public float startTime;
     LifeSystem lifeSystem;
     protected override void OnStart() {
-        context.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-        lifeSystem = context.gameObject.GetComponent<LifeSystem>();
+        lifeSystem = context.gameObject.GetComponentInChildren<LifeSystem>();
 
         startTime = Time.time;
     }
@@ -23,7 +22,6 @@ public class Healing : ActionNode
     {
         if (Time.time -startTime > sleep)
         {
-            context.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             if (lifeSystem.CurrentLife < lifeSystem.MaxLife)
             {
                 lifeSystem.CurrentLife += 1;
