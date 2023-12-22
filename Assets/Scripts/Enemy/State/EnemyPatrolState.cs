@@ -24,7 +24,6 @@ public class EnemyPatrolState : EnemyState
         _animator.SetBool("isPatroling", true);
         if (!Detected && _patrol == null)
         {
-            Debug.Log(this.gameObject.name + " is patrolling");
             _patrol = StartCoroutine(Patrol());
         }
         else if (Detected)

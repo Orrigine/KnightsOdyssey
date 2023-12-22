@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [System.Serializable]
 public class ShockWave : ActionNode
@@ -20,7 +19,8 @@ public class ShockWave : ActionNode
         blackboard.SetValue("Iteration", _iteration);
     }
 
-    protected override void OnStop() {
+    protected override void OnStop()
+    {
     }
 
     protected override State OnUpdate() {
